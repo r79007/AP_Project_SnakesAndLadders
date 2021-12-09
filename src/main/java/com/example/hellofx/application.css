@@ -1,0 +1,10 @@
+.root{
+    -fx-background-color: yellow;
+}
+
+.DialogPane{
+    -fx-font-size: 10;
+    -fx-font-family: "Bauhaus 93";
+    -fx-text-fill: "blue";
+}
+
