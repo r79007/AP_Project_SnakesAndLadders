@@ -1,5 +1,6 @@
 package com.example.ap_project_snakesandladders;
 
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,7 +52,10 @@ public class HelloController {
 
     @FXML
     void move(ActionEvent event,int num) {
-
-        redDie.setTranslateX(x+=num*40);
+        TranslateTransition translate=new TranslateTransition();
+        translate.setNode(redDie);
+        translate.setByX(num*40);
+        //redDie.setTranslateX(x+=num*40);
+        translate.play();
     }
 }
