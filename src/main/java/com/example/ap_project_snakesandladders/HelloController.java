@@ -19,6 +19,19 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
+    private double x=0;
+    private double y=0;
+
+    @FXML
+    private Button bt;
+
+    @FXML
+    private ImageView greenDie;
+
+    @FXML
+    private ImageView redDie;
+
+
     @FXML
     private ImageView dice;
 
@@ -33,5 +46,12 @@ public class HelloController {
         String path = "src/main/resources/dice"+number+".png";
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
+        move(event,number);
+    }
+
+    @FXML
+    void move(ActionEvent event,int num) {
+
+        redDie.setTranslateX(x+=num*40);
     }
 }
