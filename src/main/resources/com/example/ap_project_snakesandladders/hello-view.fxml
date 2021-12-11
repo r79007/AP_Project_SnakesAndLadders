@@ -51,7 +51,7 @@
             <Image url="@../../../token_red.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="103.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="greenDie" fitHeight="71.0" fitWidth="56.0" layoutX="103.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_green.png" />
          </image>
