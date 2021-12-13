@@ -80,6 +80,12 @@ public class HelloController implements Initializable {
     @FXML
     private Button butt;
 
+    private Token redToken;
+    private Token greenToken;
+
+    private Player p1;
+    private Player p2;
+
     Random rand = new Random();
 
 

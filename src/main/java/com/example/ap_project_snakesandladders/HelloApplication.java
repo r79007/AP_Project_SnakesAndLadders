@@ -26,3 +26,5 @@ public class HelloApplication extends Application {
         launch();
     }
 }
+
+//TODO: make a parent class for ladder and snake classes.
