@@ -3,6 +3,7 @@ package com.example.ap_project_snakesandladders;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,9 +23,11 @@ import java.awt.*;
 
 import java.io.File;
 import java.io.ObjectInputFilter;
+import java.net.URL;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class HelloController{
+public class HelloController implements Initializable {
     @FXML
     private Label welcomeText;
 
@@ -54,8 +57,9 @@ public class HelloController{
         desy=event.getSceneY();
     }
 
-    private double x=0;
-    private double y=0;
+    //private double x=0;
+    //private double y=0;
+    private int number;
 
     @FXML
     private Button bt;
@@ -92,26 +96,27 @@ public class HelloController{
     @FXML
     void roll_button(ActionEvent event) throws InterruptedException{
         playTimer();
-        int number = rand.nextInt(6)+1;
+        number = rand.nextInt(6)+1;
         String path = "src/main/resources/dice"+number+".png";
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
-        move(event,number);
+        initialize(null,null);
+        //move(event,number);
     }
 
-    @FXML
-    void move(ActionEvent event,int num) {
-        TranslateTransition translate=new TranslateTransition();
-        translate.setNode(redDie);
-        translate.setByX(num*46.4);
-        //redDie.setTranslateX(x+=num*40);
-        translate.play();
-        //x = (x + (47 * num));
-
-        //redDie.setTranslateX();
-        //redDie.setX(x);
-        //redDie.setY(474.17);
-    }
+//    @FXML
+//    void move(ActionEvent event,int num) {
+//        TranslateTransition translate=new TranslateTransition();
+//        translate.setNode(redDie);
+//        translate.setByX(num*46.4);
+//        //redDie.setTranslateX(x+=num*40);
+//        translate.play();
+//        //x = (x + (47 * num));
+//
+//        //redDie.setTranslateX();
+//        //redDie.setX(x);
+//        //redDie.setY(474.17);
+//    }
 
     void playTimer(){
         Timeline timeline = new Timeline(
@@ -126,8 +131,12 @@ public class HelloController{
     }
 
 
-
-
-
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(redDie);
+        translate.setDuration(Duration.millis(1000));
+        translate.setByX((49)*number);
+        translate.play();
+    }
 }

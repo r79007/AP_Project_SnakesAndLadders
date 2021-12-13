@@ -49,7 +49,7 @@
             <Image url="@../../../dice1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="redDie" fitHeight="79.0" fitWidth="47.0" layoutX="220.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="redDie" fitHeight="66.0" fitWidth="56.0" layoutX="220.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_red.png" />
          </image>
