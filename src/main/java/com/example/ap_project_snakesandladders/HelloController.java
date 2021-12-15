@@ -207,7 +207,7 @@ public class HelloController implements Initializable {
             System.out.println("Red");
 //            int x=0;
 //            int y=0;
-            Loop<Token> thread=new Loop<>(redToken,number);
+            Loop<Token> thread=new Loop<>(redToken,number,redDie);
             thread.start();
 
 //            TranslateTransition translate = new TranslateTransition();
@@ -230,7 +230,7 @@ public class HelloController implements Initializable {
 //            int x=0;
 //            int y=0;
 
-            Loop<Token> thread=new Loop<>(greenToken,number);
+            Loop<Token> thread=new Loop<>(greenToken,number,greenDie);
             thread.start();
 //                        TranslateTransition translate = new TranslateTransition();
 //                        translate.setNode(greenDie);
@@ -246,10 +246,12 @@ public class HelloController implements Initializable {
 
         T token;
         int num;
+        ImageView imgv;
 
-        public Loop(T token, int num){
+        public Loop(T token, int num, ImageView imgv){
             this.token=token;
             this.num=num;
+            this.imgv=imgv;
         }
 
         @Override
@@ -258,7 +260,7 @@ public class HelloController implements Initializable {
 
             while(num>0){
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
-                    Moves<T> th=new Moves<>(this.token,1,1);
+                    Moves<T> th=new Moves<>(this.token,1,1, imgv);
                     th.setCoordinate(1);
                     th.setDir(1);  //for now +ve
                     th.start();
@@ -269,7 +271,7 @@ public class HelloController implements Initializable {
                     }
 
                 }else{
-                    Moves<T> th=new Moves<>(this.token,1,1);
+                    Moves<T> th=new Moves<>(this.token,1,1, imgv);
                     th.setCoordinate(0);
                     th.setDir(1);   //for now +ve
                     th.start();
@@ -288,6 +290,7 @@ public class HelloController implements Initializable {
         private T token;
         private int dir;
         private int coordinate;
+        private ImageView imgv;
 
         public void setDir(int dir) {
             this.dir = dir;
@@ -297,25 +300,26 @@ public class HelloController implements Initializable {
             this.coordinate=coordinate;
         }
 
-        public Moves(T token, int dir, int coordinate){
+        public Moves(T token, int dir, int coordinate, ImageView imgv){
             this.token=token;
             this.dir=dir;
             this.coordinate=coordinate;
+            this.imgv=imgv;
         }
 
         @Override
         public void run() {
             TranslateTransition translate = new TranslateTransition();
-            if(dir==1){  //X move
+            if(coordinate==1){  //X move
 
-                translate.setNode(redDie);  //should be this.token.getToken();
+                translate.setNode(imgv);  //should be this.token.getToken();
                 translate.setDuration(Duration.millis(100));
                 translate.setByX(49);
                 System.out.println("hi");
                 translate.play();
             }else{
 
-                translate.setNode(greenDie);
+                translate.setNode(imgv);
                 translate.setDuration(Duration.millis(100));
                 translate.setByY(-51.99);
                 translate.play();
