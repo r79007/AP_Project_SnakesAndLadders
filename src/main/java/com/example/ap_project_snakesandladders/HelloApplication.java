@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         System.out.println("hello\n");
+        //Token red = new Token();
     }
 
     public static void main(String[] args) {

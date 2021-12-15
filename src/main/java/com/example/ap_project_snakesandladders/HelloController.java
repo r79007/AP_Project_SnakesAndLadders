@@ -28,6 +28,23 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
+
+    int n = 1;
+
+    @FXML
+    private ImageView greenDie;
+
+    @FXML
+    private ImageView redDie;
+
+    Token red = new Token(redDie,169.377,458);
+    Token green = new Token(greenDie,169.5,419.5);
+
+//    HelloController() {
+//        Token red = new Token(redDie,169.377,458);
+//        Token green = new Token(greenDie,169.5,419.5);
+//    }
+
     @FXML
     private Label welcomeText;
 
@@ -35,7 +52,6 @@ public class HelloController implements Initializable {
     private Label locval;
     @FXML
     private ProgressBar progress;
-
 
     @FXML
     void findloc(MouseEvent event) {
@@ -63,12 +79,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private Button bt;
-
-    @FXML
-    private ImageView greenDie;
-
-    @FXML
-    private ImageView redDie;
 
     @FXML
     private Text status;
@@ -106,7 +116,8 @@ public class HelloController implements Initializable {
         String path = "src/main/resources/dice"+number+".png";
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
-        initialize(null,null);
+        //initialize(null,null);
+        temp();
         //move(event,number);
     }
 
@@ -136,13 +147,109 @@ public class HelloController implements Initializable {
         timeline.play();
     }
 
+    public void temp(){
+        TranslateTransition translate = new TranslateTransition();
+        if(n == 1 && red.getStatus() == false){
+            red.setStatus(true);
+            n=0;
+            TranslateTransition trans = new TranslateTransition();
+            translate.setNode(redDie);
+            translate.setDuration(Duration.millis(1000));
+            translate.setByX((49)*number);
+
+            trans.setNode((redDie));
+            trans.setDuration(Duration.millis(1000));
+            trans.setByX(24.228);
+            trans.setByY(23);
+
+            redDie.setX(245.665);
+            redDie.setY(483);
+            //trans.play();
+            //translate.play();
+        }
+        else if(n == 0 && green.getStatus() == false){
+            green.setStatus(true);
+            n=1;
+
+            TranslateTransition trans = new TranslateTransition();
+            trans.setNode(greenDie);
+            trans.setDuration(Duration.millis(1000));
+            trans.setByX(24);
+            trans.setByY(-20);
+            //trans.play();
+
+            translate.setNode(greenDie);
+            translate.setDuration(Duration.millis(1000));
+            translate.setByX((49)*number);
+            //translate.play();
+        }
+        else if(n == 1){
+            n=0;
+            translate.setNode(redDie);
+            translate.setDuration(Duration.millis(1000));
+            translate.setByX((49)*number);
+            translate.play();
+        }
+        else if(n == 0){
+            n=1;
+            translate.setNode(greenDie);
+            translate.setDuration(Duration.millis(1000));
+            translate.setByX((49)*number);
+            translate.play();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TranslateTransition translate = new TranslateTransition();
-        translate.setNode(redDie);
-        translate.setDuration(Duration.millis(1000));
-        translate.setByX((49)*number);
-        translate.play();
+//        TranslateTransition translate = new TranslateTransition();
+//        if(n == 1 && red.getStatus() == false){
+//            red.setStatus(true);
+//            n=0;
+//            TranslateTransition trans = new TranslateTransition();
+//            translate.setNode(redDie);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*number);
+//
+//            trans.setNode((redDie));
+//            trans.setDuration(Duration.millis(1000));
+//            trans.setByX(24.228);
+//            trans.setByY(23);
+//
+//            trans.play();
+//            translate.play();
+//        }
+//        else if(n == 0 && green.getStatus() == false){
+//            green.setStatus(true);
+//            n=1;
+//
+//            TranslateTransition trans = new TranslateTransition();
+//            trans.setNode(greenDie);
+//            trans.setDuration(Duration.millis(1000));
+//            trans.setByX(24);
+//            trans.setByY(-20);
+//            trans.play();
+//
+//            translate.setNode(greenDie);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*number);
+//            translate.play();
+//        }
+//        else if(n == 1){
+//            n=0;
+//            translate.setNode(redDie);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*number);
+//            translate.play();
+//        }
+//        else if(n == 0){
+//            n=1;
+//            translate.setNode(greenDie);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*number);
+//            translate.play();
+//        }
+//        translate.setDuration(Duration.millis(1000));
+//        translate.setByX((49)*number);
+//        translate.play();
     }
 }

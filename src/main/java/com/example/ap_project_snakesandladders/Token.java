@@ -7,9 +7,18 @@ import javafx.scene.image.ImageView;
 public class Token {
     @FXML
     private ImageView token;
+    private boolean status = false;
 
-    private int x_coordinate;
-    private int y_coordinate;
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    private double x_coordinate;
+    private double y_coordinate;
 
     public ImageView getToken() {
         return this.token;
@@ -19,7 +28,7 @@ public class Token {
         this.token = token;
     }
 
-    public int getX_coordinate() {
+    public double getX_coordinate() {
         return this.x_coordinate;
     }
 
@@ -27,7 +36,7 @@ public class Token {
         this.x_coordinate = x_coordinate;
     }
 
-    public int getY_coordinate() {
+    public double getY_coordinate() {
         return this.y_coordinate;
     }
 
@@ -37,7 +46,7 @@ public class Token {
 
 
 
-    public Token(ImageView token, int x_coordinate, int y_coordinate) {
+    public Token(ImageView token, double x_coordinate, double y_coordinate) {
         this.token = token;
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
