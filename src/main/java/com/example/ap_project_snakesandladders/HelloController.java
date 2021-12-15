@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import javax.print.attribute.standard.RequestingUserName;
 import java.awt.*;
 // get the mouse's position
 
@@ -27,6 +28,8 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+
+
 public class HelloController implements Initializable {
 
     int n = 1;
@@ -37,8 +40,8 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView redDie;
 
-    Token red = new Token(redDie,169.377,458);
-    Token green = new Token(greenDie,169.5,419.5);
+    private Token redToken = new Token(redDie,0,0);
+    private Token greenToken = new Token(greenDie,0,0);
 
 //    HelloController() {
 //        Token red = new Token(redDie,169.377,458);
@@ -90,8 +93,7 @@ public class HelloController implements Initializable {
     @FXML
     private Button butt;
 
-    private Token redToken;
-    private Token greenToken;
+
 
     private Player p1;
     private Player p2;
@@ -140,62 +142,178 @@ public class HelloController implements Initializable {
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(15), e-> {
                     // do anything you need here on completion...
-                    System.out.println("15 sec over");
+                    //System.out.println("15 sec over");
                 }, new KeyValue(progress.progressProperty(), 1))
         );
         //timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    public void temp(){
-        TranslateTransition translate = new TranslateTransition();
-        if(n == 1 && red.getStatus() == false){
-            red.setStatus(true);
+    public void temp() throws InterruptedException {
+        //TranslateTransition translate = new TranslateTransition();
+        if(n == 1 && redToken.getStatus() == false){
+            redToken.setStatus(true);
             n=0;
-            TranslateTransition trans = new TranslateTransition();
+            TranslateTransition translate = new TranslateTransition();
             translate.setNode(redDie);
             translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*number);
+            translate.setByX((49)*(number-1)+24.288+49);
+            translate.setByY(10);
+            redToken.setX_coordinate(number);
+            System.out.println((int) redToken.getX_coordinate());
+//            trans.setNode((redDie));
+//            trans.setDuration(Duration.millis(1000));
+//            trans.setByX(24.288+49);
+//            trans.setByY(10);
+//            trans.setByX(24.228);
+//            trans.setByY(23);
 
-            trans.setNode((redDie));
-            trans.setDuration(Duration.millis(1000));
-            trans.setByX(24.228);
-            trans.setByY(23);
-
-            redDie.setX(245.665);
-            redDie.setY(483);
+//            redDie.setX(24.288+49);
+//            redDie.setY(10);
             //trans.play();
-            //translate.play();
+            translate.play();
         }
-        else if(n == 0 && green.getStatus() == false){
-            green.setStatus(true);
+        else if(n == 0 && greenToken.getStatus() == false){
+            greenToken.setStatus(true);
             n=1;
 
-            TranslateTransition trans = new TranslateTransition();
-            trans.setNode(greenDie);
-            trans.setDuration(Duration.millis(1000));
-            trans.setByX(24);
-            trans.setByY(-20);
-            //trans.play();
-
+            TranslateTransition translate = new TranslateTransition();
             translate.setNode(greenDie);
             translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*number);
+            translate.setByX((49)*(number-1)+24.288+49);
+            translate.setByY(-15);
+            greenToken.setX_coordinate(number);
+            System.out.println((int) greenToken.getX_coordinate());
+
+//            trans.setNode((redDie));
+//            trans.setDuration(Duration.millis(1000));
+//            trans.setByX(24.288+49);
+//            trans.setByY(10);
+//            trans.setByX(24.228);
+//            trans.setByY(23);
+
+//            redDie.setX(24.288+49);
+//            redDie.setY(10);
+            //trans.play();
+            translate.play();
             //translate.play();
         }
-        else if(n == 1){
-            n=0;
-            translate.setNode(redDie);
-            translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*number);
-            translate.play();
+        else if(n == 1) {
+            n = 0;
+//            TranslateTransition translate = new TranslateTransition();
+//            translate.setNode(redDie);
+//            translate.setDuration(Duration.millis(100));
+            int num = number;
+            System.out.println("Red");
+            int x=0;
+            int y=0;
+                while (num > 0) {
+
+
+                    if ((int) redToken.getX_coordinate() % 10 != 0) {
+//                        TranslateTransition translate = new TranslateTransition();
+//                        translate.setNode(redDie);
+//                        translate.setDuration(Duration.millis(100));
+//                        translate.setByX(49);
+//                        translate.play();
+//                        translate.setAutoReverse(true);
+                        redToken.setX_coordinate(redToken.getX_coordinate() + 1);
+                        x+=1;
+                        System.out.println((int) redToken.getX_coordinate());
+
+                    } else {
+//                        TranslateTransition translate = new TranslateTransition();
+//                        translate.setNode(redDie);
+//                        translate.setDuration(Duration.millis(100));
+//
+//                        translate.setByY(-51.99);
+//                        translate.play();
+//                        translate.setAutoReverse(true);
+                        redToken.setX_coordinate(redToken.getX_coordinate() + 1);
+                        System.out.println((int) redToken.getX_coordinate());
+                        y+=1;
+                    }
+                    num--;
+                    if (num < 0) {
+                        break;
+                    }
+
+            }
+            TranslateTransition translate = new TranslateTransition();
+                translate.setNode(redDie);
+                translate.setDuration(Duration.millis(100));
+                translate.setByX(49*x);
+                translate.setByY(-51.99*y);
+                translate.play();
         }
         else if(n == 0){
             n=1;
-            translate.setNode(greenDie);
-            translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*number);
-            translate.play();
+//            TranslateTransition translate = new TranslateTransition();
+//            translate.setNode(greenDie);
+//            translate.setDuration(Duration.millis(1000));
+            //translate.setByX((49)*number);
+            //translate.play();
+            //TranslateTransition translate = new TranslateTransition();
+            int num = number;
+            System.out.println("green");
+            int x=0;
+            int y=0;
+
+                while (num > 0) {
+
+                    if ((int) greenToken.getX_coordinate() % 10 != 0) {
+//                        TranslateTransition translate = new TranslateTransition();
+//                        translate.setNode(greenDie);
+//                        translate.setDuration(Duration.millis(100));
+//                        translate.setByX(49);
+//                        translate.play();
+//                        //Thread.sleep(100);
+//                        translate.setAutoReverse(true);
+                        greenToken.setX_coordinate(greenToken.getX_coordinate() + 1);
+                        System.out.println((int) greenToken.getX_coordinate());
+                        x+=1;
+                    } else {
+//                        TranslateTransition translate = new TranslateTransition();
+//                        translate.setNode(greenDie);
+//                        translate.setAutoReverse(true);
+//                        translate.setDuration(Duration.millis(100));
+//                        translate.setByY(-51.99);
+//                        translate.play();
+
+                        greenToken.setX_coordinate((int) greenToken.getX_coordinate() + 1);
+                        System.out.println((int) greenToken.getX_coordinate());
+                        y+=1;
+                    }
+
+                    num--;
+
+                    if (num < 0) {
+                        break;
+                    }
+                }
+                        TranslateTransition translate = new TranslateTransition();
+                        translate.setNode(greenDie);
+                        translate.setDuration(Duration.millis(1000));
+                        translate.setByX(49*x);
+                        translate.setByY(-51.99*y);
+                        translate.play();
+
+        }
+    }
+
+    class Loop implements Runnable{
+
+        @Override
+        public void run() {
+
+        }
+    }
+
+    class Moves implements Runnable{
+
+        @Override
+        public void run() {
+
         }
     }
 
