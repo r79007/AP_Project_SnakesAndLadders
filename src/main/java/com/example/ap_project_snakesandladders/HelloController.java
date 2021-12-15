@@ -205,46 +205,17 @@ public class HelloController implements Initializable {
 //            translate.setDuration(Duration.millis(100));
             int num = number;
             System.out.println("Red");
-            int x=0;
-            int y=0;
-                while (num > 0) {
+//            int x=0;
+//            int y=0;
+            Loop<Token> thread=new Loop<>(redToken,number);
+            thread.start();
 
-
-                    if ((int) redToken.getX_coordinate() % 10 != 0) {
-//                        TranslateTransition translate = new TranslateTransition();
-//                        translate.setNode(redDie);
-//                        translate.setDuration(Duration.millis(100));
-//                        translate.setByX(49);
-//                        translate.play();
-//                        translate.setAutoReverse(true);
-                        redToken.setX_coordinate(redToken.getX_coordinate() + 1);
-                        x+=1;
-                        System.out.println((int) redToken.getX_coordinate());
-
-                    } else {
-//                        TranslateTransition translate = new TranslateTransition();
-//                        translate.setNode(redDie);
-//                        translate.setDuration(Duration.millis(100));
-//
-//                        translate.setByY(-51.99);
-//                        translate.play();
-//                        translate.setAutoReverse(true);
-                        redToken.setX_coordinate(redToken.getX_coordinate() + 1);
-                        System.out.println((int) redToken.getX_coordinate());
-                        y+=1;
-                    }
-                    num--;
-                    if (num < 0) {
-                        break;
-                    }
-
-            }
-            TranslateTransition translate = new TranslateTransition();
-                translate.setNode(redDie);
-                translate.setDuration(Duration.millis(100));
-                translate.setByX(49*x);
-                translate.setByY(-51.99*y);
-                translate.play();
+//            TranslateTransition translate = new TranslateTransition();
+//                translate.setNode(redDie);
+//                translate.setDuration(Duration.millis(100));
+//                translate.setByX(49*x);
+//                translate.setByY(-51.99*y);
+//                translate.play();
         }
         else if(n == 0){
             n=1;
@@ -256,66 +227,102 @@ public class HelloController implements Initializable {
             //TranslateTransition translate = new TranslateTransition();
             int num = number;
             System.out.println("green");
-            int x=0;
-            int y=0;
+//            int x=0;
+//            int y=0;
 
-                while (num > 0) {
-
-                    if ((int) greenToken.getX_coordinate() % 10 != 0) {
+            Loop<Token> thread=new Loop<>(greenToken,number);
+            thread.start();
 //                        TranslateTransition translate = new TranslateTransition();
 //                        translate.setNode(greenDie);
-//                        translate.setDuration(Duration.millis(100));
-//                        translate.setByX(49);
-//                        translate.play();
-//                        //Thread.sleep(100);
-//                        translate.setAutoReverse(true);
-                        greenToken.setX_coordinate(greenToken.getX_coordinate() + 1);
-                        System.out.println((int) greenToken.getX_coordinate());
-                        x+=1;
-                    } else {
-//                        TranslateTransition translate = new TranslateTransition();
-//                        translate.setNode(greenDie);
-//                        translate.setAutoReverse(true);
-//                        translate.setDuration(Duration.millis(100));
-//                        translate.setByY(-51.99);
+//                        translate.setDuration(Duration.millis(1000));
+//                        translate.setByX(49*x);
+//                        translate.setByY(-51.99*y);
 //                        translate.play();
 
-                        greenToken.setX_coordinate((int) greenToken.getX_coordinate() + 1);
-                        System.out.println((int) greenToken.getX_coordinate());
-                        y+=1;
+        }
+    }
+
+    class Loop<T extends Token> extends Thread{
+
+        T token;
+        int num;
+
+        public Loop(T token, int num){
+            this.token=token;
+            this.num=num;
+        }
+
+        @Override
+        public void run() {
+
+
+            while(num>0){
+                if ((int) this.token.getX_coordinate() % 10 != 0) {
+                    Moves<T> th=new Moves<>(this.token,1,1);
+                    th.setCoordinate(1);
+                    th.setDir(1);  //for now +ve
+                    th.start();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
 
-                    num--;
-
-                    if (num < 0) {
-                        break;
+                }else{
+                    Moves<T> th=new Moves<>(this.token,1,1);
+                    th.setCoordinate(0);
+                    th.setDir(1);   //for now +ve
+                    th.start();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-                        TranslateTransition translate = new TranslateTransition();
-                        translate.setNode(greenDie);
-                        translate.setDuration(Duration.millis(1000));
-                        translate.setByX(49*x);
-                        translate.setByY(-51.99*y);
-                        translate.play();
-
+                num--;
+            }
         }
     }
 
-    class Loop implements Runnable{
+    class Moves<T extends Token> extends Thread{
+        private T token;
+        private int dir;
+        private int coordinate;
+
+        public void setDir(int dir) {
+            this.dir = dir;
+        }
+
+        public void setCoordinate(int coordinate){
+            this.coordinate=coordinate;
+        }
+
+        public Moves(T token, int dir, int coordinate){
+            this.token=token;
+            this.dir=dir;
+            this.coordinate=coordinate;
+        }
 
         @Override
         public void run() {
+            TranslateTransition translate = new TranslateTransition();
+            if(dir==1){  //X move
 
+                translate.setNode(redDie);  //should be this.token.getToken();
+                translate.setDuration(Duration.millis(100));
+                translate.setByX(49);
+                System.out.println("hi");
+                translate.play();
+            }else{
+
+                translate.setNode(greenDie);
+                translate.setDuration(Duration.millis(100));
+                translate.setByY(-51.99);
+                translate.play();
+            }
         }
     }
 
-    class Moves implements Runnable{
-
-        @Override
-        public void run() {
-
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
