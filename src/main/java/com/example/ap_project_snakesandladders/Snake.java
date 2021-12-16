@@ -1,40 +1,40 @@
 package com.example.ap_project_snakesandladders;
 
 public class Snake {
-    private int start_X;
-    private int start_y;
-    private int end_x;
-    private int end_y;
+    private int translate_X;
+    private int translate_y;
+    private int pos;
+    private int f_pos;
 
-    public int getStart_X() {
-        return start_X;
+    public int getF_pos() {
+        return f_pos;
     }
 
-    public void setStart_X(int start_X) {
-        this.start_X = start_X;
+    public void setF_pos(int f_pos) {
+        this.f_pos = f_pos;
     }
 
-    public int getStart_y() {
-        return start_y;
+    public int getPos() {
+        return pos;
     }
 
-    public void setStart_y(int start_y) {
-        this.start_y = start_y;
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 
-    public int getEnd_x() {
-        return end_x;
+    public int getTranslate_X() {
+        return translate_X;
     }
 
-    public void setEnd_x(int end_x) {
-        this.end_x = end_x;
+    public void setTranslate_X(int translate_X) {
+        this.translate_X = translate_X;
     }
 
-    public int getEnd_y() {
-        return end_y;
+    public int getTranslate_y() {
+        return translate_y;
     }
 
-    public void setEnd_y(int end_y) {
-        this.end_y = end_y;
+    public void setTranslate_y(int translate_y) {
+        this.translate_y = translate_y;
     }
 }

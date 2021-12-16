@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import static com.example.ap_project_snakesandladders.HelloApplication.lads;
 
 
 public class HelloController implements Initializable {
@@ -119,7 +120,7 @@ public class HelloController implements Initializable {
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
         //initialize(null,null);
-        temp();
+        move();
         //move(event,number);
     }
 
@@ -149,7 +150,7 @@ public class HelloController implements Initializable {
         timeline.play();
     }
 
-    public void temp() throws InterruptedException {
+    public void move() throws InterruptedException {
         //TranslateTransition translate = new TranslateTransition();
         if(n == 1 && redToken.getStatus() == false){
             redToken.setStatus(true);
@@ -162,6 +163,20 @@ public class HelloController implements Initializable {
             translate.setByY(13);
             redToken.setX_coordinate(number);
             System.out.println((int) redToken.getX_coordinate());
+
+            for(Ladder i : lads){
+                if(redToken.getX_coordinate() == i.getPos()){
+                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
+                    m.start();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    redToken.setX_coordinate(i.getF_pos());
+                    break;
+                }
+            }
 //            trans.setNode((redDie));
 //            trans.setDuration(Duration.millis(1000));
 //            trans.setByX(24.288+49);
@@ -187,6 +202,19 @@ public class HelloController implements Initializable {
             greenToken.setX_coordinate(number);
             System.out.println((int) greenToken.getX_coordinate());
 
+            for(Ladder i : lads){
+                if(greenToken.getX_coordinate() == i.getPos()){
+                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
+                    m.start();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    greenToken.setX_coordinate(i.getF_pos());
+                    break;
+                }
+            }
 //            trans.setNode((redDie));
 //            trans.setDuration(Duration.millis(1000));
 //            trans.setByX(24.288+49);
@@ -263,6 +291,7 @@ public class HelloController implements Initializable {
             while(num>0){
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
                     if(this.token.getX_coordinate()%20<10) {
+
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                         System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
@@ -300,6 +329,20 @@ public class HelloController implements Initializable {
                     }
                 }
                 num--;
+            }
+
+            for(Ladder i : lads){
+                if(this.token.getX_coordinate() == i.getPos()){
+                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),this.token);
+                    m.start();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    this.token.setX_coordinate(i.getF_pos());
+                    break;
+                }
             }
         }
     }
@@ -363,6 +406,32 @@ public class HelloController implements Initializable {
             }
         }
     }
+
+    class move_on_ladder extends Thread{
+        int x;
+        int y;
+        Token t;
+
+        public move_on_ladder(int x,int y,Token t){
+            this.x = x;
+            this.y = y;
+            this.t = t;
+        }
+
+
+        @Override
+        public void run(){
+            TranslateTransition trans = new TranslateTransition();
+            trans.setNode(this.t.getToken());
+            trans.setDuration(Duration.millis(1000));
+            trans.setByX(x*49);
+            trans.setByY(y*(-49.5));
+            trans.play();
+        }
+    }
+//    public void move_on_ladder(int x,int y,Token t){
+//
+//    }
 
 
     @Override
