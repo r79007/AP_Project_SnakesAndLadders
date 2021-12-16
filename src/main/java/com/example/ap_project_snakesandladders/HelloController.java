@@ -157,8 +157,9 @@ public class HelloController implements Initializable {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(redDie);
             translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*(number-1)+24.288+49);
-            translate.setByY(10);
+            translate.setByX((49)*(number-1)+26+49);
+            //translate.setByY(10);
+            translate.setByY(13);
             redToken.setX_coordinate(number);
             System.out.println((int) redToken.getX_coordinate());
 //            trans.setNode((redDie));
@@ -180,8 +181,9 @@ public class HelloController implements Initializable {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(greenDie);
             translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*(number-1)+24.288+49);
-            translate.setByY(-15);
+            translate.setByX((49)*(number-1)+26+49);
+            //translate.setByY(-15);
+            translate.setByY(-13);
             greenToken.setX_coordinate(number);
             System.out.println((int) greenToken.getX_coordinate());
 
@@ -346,13 +348,15 @@ public class HelloController implements Initializable {
                 if(this.dir>0) {
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
-                    translate.setByY(-51.99);
+                    //translate.setByY(-51.99);
+                    translate.setByY(-49.5);
                     translate.play();
 
                 }else{
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
-                    translate.setByY(51.99);
+                    //translate.setByY(51.99);
+                    translate.setByY(50);
                     translate.play();
                 }
                 token.setX_coordinate(token.getX_coordinate() + 1);
