@@ -256,22 +256,38 @@ public class HelloController implements Initializable {
 
         @Override
         public void run() {
-
+//(((int) this.token.getX_coordinate() % 10 )% 2 == 0) &&
 
             while(num>0){
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
-                    Moves<T> th=new Moves<>(this.token,1,1, imgv);
-                    th.setCoordinate(1);
-                    th.setDir(1);  //for now +ve
-                    th.start();
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if(this.token.getX_coordinate()%20<10) {
+                        Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
+                        System.out.println(this.token.getX_coordinate());
+                        th.setCoordinate(1);
+                        th.setDir(1);  //for now +ve
+                        th.start();
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }else{
+                        Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
+                        System.out.println(this.token.getX_coordinate());
+                        th.setCoordinate(1);
+                        th.setDir(-1);  //for now +ve
+                        th.start();
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
 
-                }else{
+                }
+                else{
                     Moves<T> th=new Moves<>(this.token,1,1, imgv);
+                    System.out.println(this.token.getX_coordinate());
                     th.setCoordinate(0);
                     th.setDir(1);   //for now +ve
                     th.start();
@@ -311,18 +327,35 @@ public class HelloController implements Initializable {
         public void run() {
             TranslateTransition translate = new TranslateTransition();
             if(coordinate==1){  //X move
-
-                translate.setNode(imgv);  //should be this.token.getToken();
-                translate.setDuration(Duration.millis(100));
-                translate.setByX(49);
-                System.out.println("hi");
-                translate.play();
+                if(this.dir>0) {
+                    translate.setNode(imgv);  //should be this.token.getToken();
+                    translate.setDuration(Duration.millis(100));
+                    translate.setByX(49);
+                    //System.out.println("hi");
+                    translate.play();
+                    //token.setX_coordinate(token.getX_coordinate() + 1);
+                }else{
+                    translate.setNode(imgv);  //should be this.token.getToken();
+                    translate.setDuration(Duration.millis(100));
+                    translate.setByX(-49);
+                    //System.out.println("hi");
+                    translate.play();
+                }
+                token.setX_coordinate(token.getX_coordinate() + 1);
             }else{
+                if(this.dir>0) {
+                    translate.setNode(imgv);
+                    translate.setDuration(Duration.millis(100));
+                    translate.setByY(-51.99);
+                    translate.play();
 
-                translate.setNode(imgv);
-                translate.setDuration(Duration.millis(100));
-                translate.setByY(-51.99);
-                translate.play();
+                }else{
+                    translate.setNode(imgv);
+                    translate.setDuration(Duration.millis(100));
+                    translate.setByY(51.99);
+                    translate.play();
+                }
+                token.setX_coordinate(token.getX_coordinate() + 1);
             }
         }
     }
