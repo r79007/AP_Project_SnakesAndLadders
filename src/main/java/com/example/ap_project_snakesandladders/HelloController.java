@@ -13,8 +13,12 @@ import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.shape.Line;
 
 import javax.print.attribute.standard.RequestingUserName;
 import java.awt.*;
@@ -34,6 +38,8 @@ import static com.example.ap_project_snakesandladders.HelloApplication.lads;
 public class HelloController implements Initializable {
 
     int n = 1;
+    @FXML
+    private Line path1;
 
     @FXML
     private ImageView greenDie;
@@ -155,28 +161,39 @@ public class HelloController implements Initializable {
         if(n == 1 && redToken.getStatus() == false){
             redToken.setStatus(true);
             n=0;
-            TranslateTransition translate = new TranslateTransition();
-            translate.setNode(redDie);
-            translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*(number-1)+26+49);
-            //translate.setByY(10);
-            translate.setByY(13);
-            redToken.setX_coordinate(number);
-            System.out.println((int) redToken.getX_coordinate());
+//            TranslateTransition translate = new TranslateTransition();
+//            translate.setNode(redDie);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*(1-1)+26+49);
+//            //translate.setByY(10);
+//            translate.setByY(13);
+////            redToken.setX_coordinate(number);
+//            redToken.setX_coordinate(1);
+//            System.out.println((int) redToken.getX_coordinate());
+            //translate.play();
 
-            for(Ladder i : lads){
-                if(redToken.getX_coordinate() == i.getPos()){
-                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
-                    m.start();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    redToken.setX_coordinate(i.getF_pos());
-                    break;
-                }
-            }
+            Path path = new Path();
+            path.getElements().add(new MoveTo(0,0));
+            path.getElements().add(new LineTo(98, -3*49.5 ));
+
+            PathTransition p = new PathTransition();
+            p.setNode(redDie);
+            p.setPath(path);
+            p.setDuration(Duration.millis(3000));
+            p.play();
+//            for(Ladder i : lads){
+//                if(redToken.getX_coordinate() == i.getPos()){
+//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
+//                    m.start();
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    redToken.setX_coordinate(i.getF_pos());
+//                    break;
+//                }
+//            }
 //            trans.setNode((redDie));
 //            trans.setDuration(Duration.millis(1000));
 //            trans.setByX(24.288+49);
@@ -187,7 +204,7 @@ public class HelloController implements Initializable {
 //            redDie.setX(24.288+49);
 //            redDie.setY(10);
             //trans.play();
-            translate.play();
+            //translate.play();
         }
         else if(n == 0 && greenToken.getStatus() == false){
             greenToken.setStatus(true);
@@ -436,55 +453,14 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        TranslateTransition translate = new TranslateTransition();
-//        if(n == 1 && red.getStatus() == false){
-//            red.setStatus(true);
-//            n=0;
-//            TranslateTransition trans = new TranslateTransition();
-//            translate.setNode(redDie);
-//            translate.setDuration(Duration.millis(1000));
-//            translate.setByX((49)*number);
+//        PathTransition  p = new PathTransition();
+//        redDie.setLayoutX(245.66);
+//        redDie.setLayoutY(484.665);
 //
-//            trans.setNode((redDie));
-//            trans.setDuration(Duration.millis(1000));
-//            trans.setByX(24.228);
-//            trans.setByY(23);
+//        p.setNode(redDie);
+//        p.setPath(path1);
+//        p.setDuration(Duration.millis());
 //
-//            trans.play();
-//            translate.play();
-//        }
-//        else if(n == 0 && green.getStatus() == false){
-//            green.setStatus(true);
-//            n=1;
-//
-//            TranslateTransition trans = new TranslateTransition();
-//            trans.setNode(greenDie);
-//            trans.setDuration(Duration.millis(1000));
-//            trans.setByX(24);
-//            trans.setByY(-20);
-//            trans.play();
-//
-//            translate.setNode(greenDie);
-//            translate.setDuration(Duration.millis(1000));
-//            translate.setByX((49)*number);
-//            translate.play();
-//        }
-//        else if(n == 1){
-//            n=0;
-//            translate.setNode(redDie);
-//            translate.setDuration(Duration.millis(1000));
-//            translate.setByX((49)*number);
-//            translate.play();
-//        }
-//        else if(n == 0){
-//            n=1;
-//            translate.setNode(greenDie);
-//            translate.setDuration(Duration.millis(1000));
-//            translate.setByX((49)*number);
-//            translate.play();
-//        }
-//        translate.setDuration(Duration.millis(1000));
-//        translate.setByX((49)*number);
-//        translate.play();
+//        p.play();
     }
 }

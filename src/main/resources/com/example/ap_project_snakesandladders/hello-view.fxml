@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
    <children>
@@ -66,5 +67,6 @@
             <Bloom />
          </effect>
       </ProgressBar>
+      <Line fx:id="path1" endX="101.33331298828125" endY="-144.33334350585938" layoutX="240.0" layoutY="477.0" rotate="180.0" startX="4.0" startY="1.666656494140625" />
    </children>
 </AnchorPane>
