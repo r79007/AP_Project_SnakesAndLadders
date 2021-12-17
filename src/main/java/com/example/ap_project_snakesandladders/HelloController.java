@@ -23,7 +23,7 @@ import javafx.scene.shape.Line;
 
 import javax.print.attribute.standard.RequestingUserName;
 import java.awt.*;
-// get the mouse's position
+
 
 
 
@@ -51,10 +51,10 @@ public class HelloController implements Initializable {
     private Token redToken = new Token(redDie,0,0);
     private Token greenToken = new Token(greenDie,0,0);
 
-//    HelloController() {
-//        Token red = new Token(redDie,169.377,458);
-//        Token green = new Token(greenDie,169.5,419.5);
-//    }
+
+
+
+
 
     @FXML
     private Label welcomeText;
@@ -84,8 +84,8 @@ public class HelloController implements Initializable {
         desy=event.getSceneY();
     }
 
-    //private double x=0;
-    //private double y=0;
+
+
     private int number;
 
     @FXML
@@ -110,15 +110,6 @@ public class HelloController implements Initializable {
 
 
 
-//    void ask2Move2(ActionEvent event) throws InterruptedException {
-//        playTimer();
-//        makeAmove(event);
-//    }
-//
-//    void makeAmove(ActionEvent event) throws InterruptedException {
-//
-//        roll_button(event);
-//    }
     @FXML
     void roll_button(ActionEvent event) throws InterruptedException{
         playTimer();
@@ -126,74 +117,51 @@ public class HelloController implements Initializable {
         String path = "src/main/resources/dice"+number+".png";
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
-        //initialize(null,null);
+
         move();
-        //move(event,number);
+
     }
 
-//    @FXML
-//    void move(ActionEvent event,int num) {
-//        TranslateTransition translate=new TranslateTransition();
-//        translate.setNode(redDie);
-//        translate.setByX(num*46.4);
-//        //redDie.setTranslateX(x+=num*40);
-//        translate.play();
-//        //x = (x + (47 * num));
-//
-//        //redDie.setTranslateX();
-//        //redDie.setX(x);
-//        //redDie.setY(474.17);
-//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     void playTimer(){
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(15), e-> {
-                    // do anything you need here on completion...
-                    //System.out.println("15 sec over");
+
+
                 }, new KeyValue(progress.progressProperty(), 1))
         );
-        //timeline.setCycleCount(Animation.INDEFINITE);
+
         timeline.play();
     }
     int i=0;
     public void move() throws InterruptedException {
-        //TranslateTransition translate = new TranslateTransition();
+
         if(n == 1 && redToken.getStatus() == false){
             redToken.setStatus(true);
             n=0;
-//            TranslateTransition translate = new TranslateTransition();
-//            translate.setNode(redDie);
-//            translate.setDuration(Duration.millis(1000));
-//            translate.setByX((49)*(1-1)+26+49);
-//            //translate.setByY(10);
-//            translate.setByY(13);
-////            redToken.setX_coordinate(number);
-//            redToken.setX_coordinate(1);
-//            System.out.println((int) redToken.getX_coordinate());
-            //translate.play();
-
-//            Path path = new Path();
-//            path.getElements().add(new MoveTo(-redDie.getLayoutX()+path.getLayoutX(),-redDie.getLayoutY()+path.getLayoutY()));
-//            path.getElements().add(new LineTo(98, -3*49.5 ));
-//            redDie.setX(redDie.getLayoutX());
-//            redDie.setY(redDie.getLayoutY());
-//            redDie.setLayoutX(0);
-//            redDie.setLayoutY(0);
-//            PathTransition p = new PathTransition();
-//            p.setNode(redDie);
-//            p.setPath(path1);
-//            p.setDuration(Duration.millis(3000));
-            //p.play();
             Thread th1=new Thread(new Runnable() {
                 @Override public void run() {
                     TranslateTransition translate = new TranslateTransition();
                     translate.setNode(redDie);
                     translate.setDuration(Duration.millis(1000));
                     translate.setByX((49) * (1 - 1) + 26 + 49);
-                    //translate.setByY(10);
+
                     translate.setByY(13);
-//            redToken.setX_coordinate(number);
+
                     redToken.setX_coordinate(1);
                     System.out.println((int) redToken.getX_coordinate());
                     translate.play();
@@ -221,73 +189,73 @@ public class HelloController implements Initializable {
                 });
 
                 th1.start();
-                //th2.join(1000);
+
                 th2.start();
 
-//            Timeline timeline=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
-//                if(i==0) {
-//                    System.out.println("hi");
-//                    i++;
-//                    TranslateTransition translate = new TranslateTransition();
-//                    translate.setNode(redDie);
-//                    translate.setDuration(Duration.millis(1000));
-//                    translate.setByX((49) * (1 - 1) + 26 + 49);
-//                    //translate.setByY(10);
-//                    translate.setByY(13);
-////            redToken.setX_coordinate(number);
-//                    redToken.setX_coordinate(1);
-//                    System.out.println((int) redToken.getX_coordinate());
-//                    translate.play();
-//
-//                }else{
-//                    System.out.println("hi2");
-//                    redDie.setX(redDie.getLayoutX());
-//                    redDie.setY(redDie.getLayoutY());
-//                    redDie.setLayoutX(0);
-//                    redDie.setLayoutY(0);
-//                    PathTransition pt = new PathTransition();
-//                    pt.setNode(redDie);
-//                    pt.setPath(path1);
-//                    pt.setDuration(Duration.millis(3000));
-//                    pt.play();
-//                }
-//            }));
-//
-//            timeline.setCycleCount(2);
-//            timeline.play();
 
 
 
 
 
 
-            //            SequentialTransition st=new SequentialTransition(translate);
-//            //st.setNode(redDie);
-//            st.play();
-//            for(Ladder i : lads){
-//                if(redToken.getX_coordinate() == i.getPos()){
-//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
-//                    m.start();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    redToken.setX_coordinate(i.getF_pos());
-//                    break;
-//                }
-//            }
-//            trans.setNode((redDie));
-//            trans.setDuration(Duration.millis(1000));
-//            trans.setByX(24.288+49);
-//            trans.setByY(10);
-//            trans.setByX(24.228);
-//            trans.setByY(23);
 
-//            redDie.setX(24.288+49);
-//            redDie.setY(10);
-            //trans.play();
-            //translate.play();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         else if(n == 0 && greenToken.getStatus() == false){
             greenToken.setStatus(true);
@@ -297,77 +265,77 @@ public class HelloController implements Initializable {
             translate.setNode(greenDie);
             translate.setDuration(Duration.millis(1000));
             translate.setByX((49)*(number-1)+26+49);
-            //translate.setByY(-15);
+
             translate.setByY(-13);
             greenToken.setX_coordinate(number);
             System.out.println((int) greenToken.getX_coordinate());
 
-//            for(Ladder i : lads){
-//                if(greenToken.getX_coordinate() == i.getPos()){
-//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
-//                    m.start();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    greenToken.setX_coordinate(i.getF_pos());
-//                    break;
-//                }
-//            }
-//            trans.setNode((redDie));
-//            trans.setDuration(Duration.millis(1000));
-//            trans.setByX(24.288+49);
-//            trans.setByY(10);
-//            trans.setByX(24.228);
-//            trans.setByY(23);
 
-//            redDie.setX(24.288+49);
-//            redDie.setY(10);
-            //trans.play();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             translate.play();
-            //translate.play();
+
         }
         else if(n == 1) {
             n = 0;
-//            TranslateTransition translate = new TranslateTransition();
-//            translate.setNode(redDie);
-//            translate.setDuration(Duration.millis(100));
+
+
+
             int num = number;
             System.out.println("Red");
-//            int x=0;
-//            int y=0;
+
+
             Loop<Token> thread=new Loop<>(redToken,number,redDie);
             thread.start();
 
-//            TranslateTransition translate = new TranslateTransition();
-//                translate.setNode(redDie);
-//                translate.setDuration(Duration.millis(100));
-//                translate.setByX(49*x);
-//                translate.setByY(-51.99*y);
-//                translate.play();
+
+
+
+
+
+
         }
         else if(n == 0){
             n=1;
-//            TranslateTransition translate = new TranslateTransition();
-//            translate.setNode(greenDie);
-//            translate.setDuration(Duration.millis(1000));
-            //translate.setByX((49)*number);
-            //translate.play();
-            //TranslateTransition translate = new TranslateTransition();
+
+
+
+
+
+
             int num = number;
             System.out.println("green");
-//            int x=0;
-//            int y=0;
+
+
 
             Loop<Token> thread=new Loop<>(greenToken,number,greenDie);
             thread.start();
-//                        TranslateTransition translate = new TranslateTransition();
-//                        translate.setNode(greenDie);
-//                        translate.setDuration(Duration.millis(1000));
-//                        translate.setByX(49*x);
-//                        translate.setByY(-51.99*y);
-//                        translate.play();
+
+
+
+
+
+
 
         }
     }
@@ -386,7 +354,7 @@ public class HelloController implements Initializable {
 
         @Override
         public void run() {
-//(((int) this.token.getX_coordinate() % 10 )% 2 == 0) &&
+
 
             while(num>0){
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
@@ -395,7 +363,7 @@ public class HelloController implements Initializable {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                         System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
-                        th.setDir(1);  //for now +ve
+                        th.setDir(1);
                         th.start();
                         try {
                             Thread.sleep(100);
@@ -406,7 +374,7 @@ public class HelloController implements Initializable {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                         System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
-                        th.setDir(-1);  //for now +ve
+                        th.setDir(-1);
                         th.start();
                         try {
                             Thread.sleep(100);
@@ -420,7 +388,7 @@ public class HelloController implements Initializable {
                     Moves<T> th=new Moves<>(this.token,1,1, imgv);
                     System.out.println(this.token.getX_coordinate());
                     th.setCoordinate(0);
-                    th.setDir(1);   //for now +ve
+                    th.setDir(1);
                     th.start();
                     try {
                         Thread.sleep(100);
@@ -431,19 +399,19 @@ public class HelloController implements Initializable {
                 num--;
             }
 
-//            for(Ladder i : lads){
-//                if(this.token.getX_coordinate() == i.getPos()){
-//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),this.token);
-//                    m.start();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    this.token.setX_coordinate(i.getF_pos());
-//                    break;
-//                }
-//            }
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 
@@ -500,19 +468,19 @@ public class HelloController implements Initializable {
         @Override
         public void run() {
             TranslateTransition translate = new TranslateTransition();
-            if(coordinate==1){  //X move
+            if(coordinate==1){
                 if(this.dir>0) {
-                    translate.setNode(imgv);  //should be this.token.getToken();
+                    translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
                     translate.setByX(49);
-                    //System.out.println("hi");
+
                     translate.play();
-                    //token.setX_coordinate(token.getX_coordinate() + 1);
+
                 }else{
-                    translate.setNode(imgv);  //should be this.token.getToken();
+                    translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
                     translate.setByX(-49);
-                    //System.out.println("hi");
+
                     translate.play();
                 }
                 token.setX_coordinate(token.getX_coordinate() + 1);
@@ -520,14 +488,14 @@ public class HelloController implements Initializable {
                 if(this.dir>0) {
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
-                    //translate.setByY(-51.99);
+
                     translate.setByY(-49.5);
                     translate.play();
 
                 }else{
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
-                    //translate.setByY(51.99);
+
                     translate.setByY(50);
                     translate.play();
                 }
@@ -536,43 +504,43 @@ public class HelloController implements Initializable {
         }
     }
 
-//    class move_on_ladder extends Thread{
-//        int x;
-//        int y;
-//        Token t;
-//
-//        public move_on_ladder(int x,int y,Token t){
-//            this.x = x;
-//            this.y = y;
-//            this.t = t;
-//        }
-//
-//
-//        @Override
-//        public void run(){
-//            TranslateTransition trans = new TranslateTransition();
-//            trans.setNode(this.t.getToken());
-//            trans.setDuration(Duration.millis(1000));
-//            trans.setByX(x*49);
-//            trans.setByY(y*(-49.5));
-//            trans.play();
-//        }
-//    }
-//    public void move_on_ladder(int x,int y,Token t){
-//
-//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        PathTransition  p = new PathTransition();
-//        redDie.setLayoutX(245.66);
-//        redDie.setLayoutY(484.665);
-//
-//        p.setNode(redDie);
-//        p.setPath(path1);
-//        p.setDuration(Duration.millis());
-//
-//        p.play();
+
+
+
+
+
+
+
+
+
     }
 }
