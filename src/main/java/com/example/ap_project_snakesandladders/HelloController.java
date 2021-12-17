@@ -1,6 +1,7 @@
 package com.example.ap_project_snakesandladders;
 
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -155,7 +156,7 @@ public class HelloController implements Initializable {
         //timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
-
+    int i=0;
     public void move() throws InterruptedException {
         //TranslateTransition translate = new TranslateTransition();
         if(n == 1 && redToken.getStatus() == false){
@@ -172,15 +173,97 @@ public class HelloController implements Initializable {
 //            System.out.println((int) redToken.getX_coordinate());
             //translate.play();
 
-            Path path = new Path();
-            path.getElements().add(new MoveTo(0,0));
-            path.getElements().add(new LineTo(98, -3*49.5 ));
+//            Path path = new Path();
+//            path.getElements().add(new MoveTo(-redDie.getLayoutX()+path.getLayoutX(),-redDie.getLayoutY()+path.getLayoutY()));
+//            path.getElements().add(new LineTo(98, -3*49.5 ));
+//            redDie.setX(redDie.getLayoutX());
+//            redDie.setY(redDie.getLayoutY());
+//            redDie.setLayoutX(0);
+//            redDie.setLayoutY(0);
+//            PathTransition p = new PathTransition();
+//            p.setNode(redDie);
+//            p.setPath(path1);
+//            p.setDuration(Duration.millis(3000));
+            //p.play();
+            Thread th1=new Thread(new Runnable() {
+                @Override public void run() {
+                    TranslateTransition translate = new TranslateTransition();
+                    translate.setNode(redDie);
+                    translate.setDuration(Duration.millis(1000));
+                    translate.setByX((49) * (1 - 1) + 26 + 49);
+                    //translate.setByY(10);
+                    translate.setByY(13);
+//            redToken.setX_coordinate(number);
+                    redToken.setX_coordinate(1);
+                    System.out.println((int) redToken.getX_coordinate());
+                    translate.play();
+                }});
+                        Thread th2=new Thread(new Runnable() {
+                            @Override public void run() {
 
-            PathTransition p = new PathTransition();
-            p.setNode(redDie);
-            p.setPath(path);
-            p.setDuration(Duration.millis(3000));
-            p.play();
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                                redDie.setX(redDie.getLayoutX());
+                                redDie.setY(redDie.getLayoutY());
+                                redDie.setLayoutX(0);
+                                redDie.setLayoutY(0);
+                                PathTransition pt = new PathTransition();
+                                pt.setNode(redDie);
+                                pt.setPath(path1);
+                                pt.setDuration(Duration.millis(1000));
+                                pt.play();
+
+                            }
+                        });
+
+                        th1.start();
+                        //th2.join(1000);
+                        th2.start();
+
+//            Timeline timeline=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
+//                if(i==0) {
+//                    System.out.println("hi");
+//                    i++;
+//                    TranslateTransition translate = new TranslateTransition();
+//                    translate.setNode(redDie);
+//                    translate.setDuration(Duration.millis(1000));
+//                    translate.setByX((49) * (1 - 1) + 26 + 49);
+//                    //translate.setByY(10);
+//                    translate.setByY(13);
+////            redToken.setX_coordinate(number);
+//                    redToken.setX_coordinate(1);
+//                    System.out.println((int) redToken.getX_coordinate());
+//                    translate.play();
+//
+//                }else{
+//                    System.out.println("hi2");
+//                    redDie.setX(redDie.getLayoutX());
+//                    redDie.setY(redDie.getLayoutY());
+//                    redDie.setLayoutX(0);
+//                    redDie.setLayoutY(0);
+//                    PathTransition pt = new PathTransition();
+//                    pt.setNode(redDie);
+//                    pt.setPath(path1);
+//                    pt.setDuration(Duration.millis(3000));
+//                    pt.play();
+//                }
+//            }));
+//
+//            timeline.setCycleCount(2);
+//            timeline.play();
+
+
+
+
+
+
+            //            SequentialTransition st=new SequentialTransition(translate);
+//            //st.setNode(redDie);
+//            st.play();
 //            for(Ladder i : lads){
 //                if(redToken.getX_coordinate() == i.getPos()){
 //                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
@@ -219,19 +302,19 @@ public class HelloController implements Initializable {
             greenToken.setX_coordinate(number);
             System.out.println((int) greenToken.getX_coordinate());
 
-            for(Ladder i : lads){
-                if(greenToken.getX_coordinate() == i.getPos()){
-                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
-                    m.start();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    greenToken.setX_coordinate(i.getF_pos());
-                    break;
-                }
-            }
+//            for(Ladder i : lads){
+//                if(greenToken.getX_coordinate() == i.getPos()){
+//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),greenToken);
+//                    m.start();
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    greenToken.setX_coordinate(i.getF_pos());
+//                    break;
+//                }
+//            }
 //            trans.setNode((redDie));
 //            trans.setDuration(Duration.millis(1000));
 //            trans.setByX(24.288+49);
@@ -348,20 +431,49 @@ public class HelloController implements Initializable {
                 num--;
             }
 
-            for(Ladder i : lads){
-                if(this.token.getX_coordinate() == i.getPos()){
-                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),this.token);
-                    m.start();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    this.token.setX_coordinate(i.getF_pos());
-                    break;
-                }
-            }
+//            for(Ladder i : lads){
+//                if(this.token.getX_coordinate() == i.getPos()){
+//                    move_on_ladder m = new move_on_ladder(i.getTranslate_X(),i.getTranslate_y(),this.token);
+//                    m.start();
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    this.token.setX_coordinate(i.getF_pos());
+//                    break;
+//                }
+//            }
         }
+    }
+
+    class LadderTransition<T extends Token> extends Thread{
+        private T token;
+        private ImageView imgv;
+        private Shape path;
+
+        public LadderTransition(T token, ImageView imgv, Shape path) {
+            this.token=token;
+            this.imgv=imgv;
+            this.path=path;
+        }
+
+        @Override
+        public void run(){
+
+        imgv.setX(redDie.getLayoutX());
+        imgv.setY(redDie.getLayoutY());
+        imgv.setLayoutX(0);
+        imgv.setLayoutY(0);
+        PathTransition pt = new PathTransition();
+        pt.setNode(imgv);
+        pt.setPath((javafx.scene.shape.Shape) this.path);
+        pt.setDuration(Duration.millis(3000));
+        pt.play();
+
+
+        }
+
     }
 
     class Moves<T extends Token> extends Thread{
@@ -424,28 +536,28 @@ public class HelloController implements Initializable {
         }
     }
 
-    class move_on_ladder extends Thread{
-        int x;
-        int y;
-        Token t;
-
-        public move_on_ladder(int x,int y,Token t){
-            this.x = x;
-            this.y = y;
-            this.t = t;
-        }
-
-
-        @Override
-        public void run(){
-            TranslateTransition trans = new TranslateTransition();
-            trans.setNode(this.t.getToken());
-            trans.setDuration(Duration.millis(1000));
-            trans.setByX(x*49);
-            trans.setByY(y*(-49.5));
-            trans.play();
-        }
-    }
+//    class move_on_ladder extends Thread{
+//        int x;
+//        int y;
+//        Token t;
+//
+//        public move_on_ladder(int x,int y,Token t){
+//            this.x = x;
+//            this.y = y;
+//            this.t = t;
+//        }
+//
+//
+//        @Override
+//        public void run(){
+//            TranslateTransition trans = new TranslateTransition();
+//            trans.setNode(this.t.getToken());
+//            trans.setDuration(Duration.millis(1000));
+//            trans.setByX(x*49);
+//            trans.setByY(y*(-49.5));
+//            trans.play();
+//        }
+//    }
 //    public void move_on_ladder(int x,int y,Token t){
 //
 //    }
