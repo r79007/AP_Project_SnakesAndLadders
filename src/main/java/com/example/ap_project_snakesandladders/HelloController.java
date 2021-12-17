@@ -198,31 +198,31 @@ public class HelloController implements Initializable {
                     System.out.println((int) redToken.getX_coordinate());
                     translate.play();
                 }});
-                        Thread th2=new Thread(new Runnable() {
-                            @Override public void run() {
+                Thread th2=new Thread(new Runnable() {
+                    @Override public void run() {
 
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                                redDie.setX(redDie.getLayoutX());
-                                redDie.setY(redDie.getLayoutY());
-                                redDie.setLayoutX(0);
-                                redDie.setLayoutY(0);
-                                PathTransition pt = new PathTransition();
-                                pt.setNode(redDie);
-                                pt.setPath(path1);
-                                pt.setDuration(Duration.millis(1000));
-                                pt.play();
+                        redDie.setX(redDie.getLayoutX());
+                        redDie.setY(redDie.getLayoutY());
+                        redDie.setLayoutX(0);
+                        redDie.setLayoutY(0);
+                        PathTransition pt = new PathTransition();
+                        pt.setNode(redDie);
+                        pt.setPath(path1);
+                        pt.setDuration(Duration.millis(1000));
+                        pt.play();
 
-                            }
-                        });
+                    }
+                });
 
-                        th1.start();
-                        //th2.join(1000);
-                        th2.start();
+                th1.start();
+                //th2.join(1000);
+                th2.start();
 
 //            Timeline timeline=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
 //                if(i==0) {
