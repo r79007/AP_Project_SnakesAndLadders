@@ -1,8 +1,11 @@
 package com.example.ap_project_snakesandladders;
 
 
+import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,39 +59,30 @@ public class Token {
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
     }
-
+    static int i1=0;
     public static void move(Token t1, Token t2, int number, Shape path1, ImageView red, ImageView green) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false){
             t1.setStatus(true);
             n=0;
-            Thread th1=new Thread(new Runnable() {
-                @Override
-                public void run() {
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
+                if(i1==0){
                     TranslateTransition translate = new TranslateTransition();
                     translate.setNode(red);
                     translate.setDuration(Duration.millis(1000));
                     translate.setByX((49) * (1 - 1) + 26 + 49);
                     translate.setByY(13);
                     t1.setX_coordinate(1);
-                    //System.out.println((int) t1.getX_coordinate());
                     translate.play();
-                }});
+                    i1++;
+                }else{
+                    for(Ladder i : HelloController.getLads()){
+                        System.out.println(t1.x_coordinate);
 
-            th1.start();
+                        if(i.getPos() == t1.getX_coordinate()){
+                            System.out.println(t1.getX_coordinate());
 
-            for(Ladder i : HelloController.getLads()){
-                System.out.println(t1.x_coordinate);
 
-                if(i.getPos() == t1.getX_coordinate()){
-                    System.out.println(t1.getX_coordinate());
-                    Thread th2=new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
                             red.setX(red.getLayoutX());
                             red.setY(red.getLayoutY());
                             red.setLayoutX(0);
@@ -99,11 +93,88 @@ public class Token {
                             pt.setDuration(Duration.millis(1000));
                             pt.play();
                         }
-                    });
-                    th2.start();
-                    break;
+
+
+                        break;
+                    }
                 }
-            }
+            }));
+            timeline.setCycleCount(2);
+            timeline.play();
+//            Thread th1=new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    TranslateTransition translate = new TranslateTransition();
+//                    translate.setNode(red);
+//                    translate.setDuration(Duration.millis(1000));
+//                    translate.setByX((49) * (1 - 1) + 26 + 49);
+//                    translate.setByY(13);
+//                    t1.setX_coordinate(1);
+//                    //System.out.println((int) t1.getX_coordinate());
+//                    translate.play();
+//                    Thread th2=new Thread(new Runnable() {
+//                        @Override public void run() {
+//                            try {
+//                                Thread.sleep(1000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                            for(Ladder i : HelloController.getLads()){
+//                                System.out.println(t1.x_coordinate);
+//
+//                                if(i.getPos() == t1.getX_coordinate()){
+//                                    System.out.println(t1.getX_coordinate());
+//
+//
+//                                            red.setX(red.getLayoutX());
+//                                            red.setY(red.getLayoutY());
+//                                            red.setLayoutX(0);
+//                                            red.setLayoutY(0);
+//                                            PathTransition pt = new PathTransition();
+//                                            pt.setNode(red);
+//                                            pt.setPath(path1);
+//                                            pt.setDuration(Duration.millis(1000));
+//                                            pt.play();
+//                                        }
+//
+//
+//                                    break;
+//                                }
+//                            }
+//
+//                    });
+//                }});
+//
+//            th1.start();
+
+//            for(Ladder i : HelloController.getLads()){
+//                System.out.println(t1.x_coordinate);
+//
+//                if(i.getPos() == t1.getX_coordinate()){
+//                    System.out.println(t1.getX_coordinate());
+//                    Thread th2=new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                Thread.sleep(1000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                            red.setX(red.getLayoutX());
+//                            red.setY(red.getLayoutY());
+//                            red.setLayoutX(0);
+//                            red.setLayoutY(0);
+//                            PathTransition pt = new PathTransition();
+//                            pt.setNode(red);
+//                            pt.setPath(path1);
+//                            pt.setDuration(Duration.millis(1000));
+//                            pt.play();
+//                        }
+//                    });
+//                    th2.start();
+//                    break;
+//                }
+//            }
         }
         else if(n == 0 && t2.getStatus() == false){
             t2.setStatus(true);
