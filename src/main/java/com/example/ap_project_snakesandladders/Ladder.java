@@ -1,10 +1,21 @@
 package com.example.ap_project_snakesandladders;
 
+import javafx.scene.shape.Line;
+
 public class Ladder {
     private int translate_X;
     private int translate_y;
     private int pos;
     private int f_pos;
+    private Line path;
+
+    public Line getPath() {
+        return path;
+    }
+
+    public void setPath(Line path) {
+        this.path = path;
+    }
 
     public int getF_pos() {
         return f_pos;

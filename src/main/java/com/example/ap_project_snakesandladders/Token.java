@@ -62,36 +62,48 @@ public class Token {
             t1.setStatus(true);
             n=0;
             Thread th1=new Thread(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     TranslateTransition translate = new TranslateTransition();
                     translate.setNode(red);
                     translate.setDuration(Duration.millis(1000));
                     translate.setByX((49) * (1 - 1) + 26 + 49);
                     translate.setByY(13);
                     t1.setX_coordinate(1);
-                    System.out.println((int) t1.getX_coordinate());
+                    //System.out.println((int) t1.getX_coordinate());
                     translate.play();
                 }});
-            Thread th2=new Thread(new Runnable() {
-                @Override public void run() {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    red.setX(red.getLayoutX());
-                    red.setY(red.getLayoutY());
-                    red.setLayoutX(0);
-                    red.setLayoutY(0);
-                    PathTransition pt = new PathTransition();
-                    pt.setNode(red);
-                    pt.setPath(path1);
-                    pt.setDuration(Duration.millis(1000));
-                    pt.play();
-                }
-            });
+
             th1.start();
-            th2.start();
+
+            for(Ladder i : HelloController.getLads()){
+                System.out.println(t1.x_coordinate);
+
+                if(i.getPos() == t1.getX_coordinate()){
+                    System.out.println(t1.getX_coordinate());
+                    Thread th2=new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            red.setX(red.getLayoutX());
+                            red.setY(red.getLayoutY());
+                            red.setLayoutX(0);
+                            red.setLayoutY(0);
+                            PathTransition pt = new PathTransition();
+                            pt.setNode(red);
+                            pt.setPath(path1);
+                            pt.setDuration(Duration.millis(1000));
+                            pt.play();
+                        }
+                    });
+                    th2.start();
+                    break;
+                }
+            }
         }
         else if(n == 0 && t2.getStatus() == false){
             t2.setStatus(true);
@@ -106,7 +118,8 @@ public class Token {
             translate.play();
         }
         else if(n == 1) {
-            n = 0;            int num = number;
+            n = 0;
+            int num = number;
             System.out.println("Red");
 
             Loop<Token> thread=new Loop<>(t1,number,red);

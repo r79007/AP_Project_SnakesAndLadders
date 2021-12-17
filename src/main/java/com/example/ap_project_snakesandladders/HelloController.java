@@ -24,14 +24,38 @@ import java.awt.*;
 import java.io.File;
 import java.io.ObjectInputFilter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
-import static com.example.ap_project_snakesandladders.HelloApplication.lads;
 
 public class HelloController implements Initializable {
 
+    private static ArrayList<Ladder> lads = new ArrayList<>();
+
+    public static ArrayList<Ladder> getLads() {
+        return lads;
+    }
+
     @FXML
-    private Line path1;
+    public Line path1_38;
+    //HelloApplication.lads.get(0)
+    @FXML
+    public Line path4_14;
+    @FXML
+    public Line path9_31;
+    @FXML
+    private Line path21_42;
+    @FXML
+    private Line path28_84;
+    @FXML
+    private Line path36_44;
+    @FXML
+    private Line path51_67;
+    @FXML
+    private Line path80_100;
+    @FXML
+    private Line path71_91;
+
     @FXML
     private ImageView greenDie;
     @FXML
@@ -81,7 +105,9 @@ public class HelloController implements Initializable {
         File file = new File(path);
         dice.setImage(new Image(file.toURI().toString()));
         move();
-    }    void playTimer(){
+    }
+
+    void playTimer(){
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(15), e-> {
@@ -92,7 +118,7 @@ public class HelloController implements Initializable {
     }
     int i=0;
     public void move() throws InterruptedException {
-        Token.move(redToken,greenToken,number,path1,redDie,greenDie);
+        Token.move(redToken,greenToken,number,path1_38,redDie,greenDie);
     }
 //        if(n == 1 && redToken.getStatus() == false){
 //            redToken.setStatus(true);
@@ -284,5 +310,76 @@ public class HelloController implements Initializable {
 //    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Ladder l1 = new Ladder();
+        l1.setPos(1);
+        l1.setTranslate_X(2);
+        l1.setTranslate_y(3);
+        l1.setF_pos(38);
+        l1.setPath(path1_38);
+        lads.add(l1);
+
+        Ladder l2 = new Ladder();
+        l2.setPos(4);
+        l2.setTranslate_X(3);
+        l2.setTranslate_y(1);
+        l2.setF_pos(14);
+        l1.setPath(path4_14);
+        lads.add(l2);
+
+        Ladder l3 = new Ladder();
+        l3.setPos(9);
+        l3.setTranslate_X(1);
+        l3.setTranslate_y(3);
+        l3.setF_pos(31);
+        l3.setPath(path9_31);
+        lads.add(l3);
+
+        Ladder l4 = new Ladder();
+        l4.setPos(21);
+        l4.setTranslate_X(1);
+        l4.setTranslate_y(2);
+        l4.setF_pos(42);
+        l4.setPath(path21_42);
+        lads.add(l4);
+
+        Ladder l5 = new Ladder();
+        l5.setPos(28);
+        l5.setTranslate_X(-4);
+        l5.setTranslate_y(6);
+        l5.setF_pos(84);
+        l5.setPath(path28_84);
+        lads.add(l5);
+
+        Ladder l6 = new Ladder();
+        l6.setPos(36);
+        l6.setTranslate_X(-1);
+        l6.setTranslate_y(1);
+        l6.setF_pos(44);
+        l6.setPath(path36_44);
+        lads.add(l6);
+
+        Ladder l7 = new Ladder();
+        l7.setPos(51);
+        l7.setTranslate_X(-3);
+        l7.setTranslate_y(1);
+        l7.setF_pos(67);
+        l7.setPath(path51_67);
+        lads.add(l7);
+
+        Ladder l8 = new Ladder();
+        l8.setPos(71);
+        l8.setTranslate_X(0);
+        l8.setTranslate_y(2);
+        l8.setF_pos(91);
+        l8.setPath(path71_91);
+        lads.add(l8);
+
+        Ladder l9 = new Ladder();
+        l9.setPos(80);
+        l9.setTranslate_X(0);
+        l9.setTranslate_y(2);
+        l9.setF_pos(100);
+        l9.setPath(path80_100);
+        lads.add(l9);
     }
 }

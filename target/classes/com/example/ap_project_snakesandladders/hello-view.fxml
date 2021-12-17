@@ -67,6 +67,14 @@
             <Bloom />
          </effect>
       </ProgressBar>
-      <Line fx:id="path1" endX="101.33331298828125" endY="-144.33334350585938" layoutX="240.0" layoutY="477.0" startX="4.0" startY="1.666656494140625" />
+      <Line fx:id="path1_38" endX="101.33331298828125" endY="-144.33334350585938" layoutX="240.0" layoutY="477.0" startX="4.0" startY="1.666656494140625" />
+      <Line fx:id="path4_14" endX="140.0" endY="-37.333343505859375" layoutX="398.0" layoutY="470.0" startX="-5.999969482421875" startY="10.666656494140625" />
+      <Line fx:id="path9_31" endX="64.0" endY="-135.33334350585938" layoutX="624.0" layoutY="470.0" startX="12.0" startY="11.333343505859375" />
+      <Line fx:id="path28_84" endX="-195.33334350585938" endY="-294.3333435058594" layoutX="588.0" layoutY="383.0" startY="1.0" />
+      <Line fx:id="path21_42" endX="49.000030517578125" endY="-93.33334350585938" layoutX="243.0" layoutY="382.0" startX="-0.9999847412109375" startY="0.666656494140625" />
+      <Line fx:id="path36_44" endX="-36.333343505859375" endY="-48.0" layoutX="433.0" layoutY="332.0" startX="7.666656494140625" startY="6.666656494140625" />
+      <Line fx:id="path51_67" endX="-147.66668701171875" endY="-51.99998474121094" layoutX="689.0" layoutY="236.0" startX="0.33331298828125" startY="1.52587890625E-5" />
+      <Line fx:id="path71_91" endX="4.6666259765625" endY="-89.66665649414062" layoutX="684.0" layoutY="137.0" startX="4.6666259765625" />
+      <Line fx:id="path80_100" endX="1.0000152587890625" endY="-97.33332824707031" layoutX="243.0" layoutY="138.0" startX="1.0000152587890625" />
    </children>
 </AnchorPane>
