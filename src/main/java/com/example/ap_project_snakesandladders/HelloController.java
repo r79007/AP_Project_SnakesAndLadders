@@ -118,7 +118,7 @@ public class HelloController implements Initializable {
     }
     int i=0;
     public void move() throws InterruptedException {
-        Token.move(redToken,greenToken,number,path1_38,redDie,greenDie);
+        Token.move(redToken,greenToken,number,redDie,greenDie);
     }
 //        if(n == 1 && redToken.getStatus() == false){
 //            redToken.setStatus(true);
@@ -323,7 +323,7 @@ public class HelloController implements Initializable {
         l2.setTranslate_X(3);
         l2.setTranslate_y(1);
         l2.setF_pos(14);
-        l1.setPath(path4_14);
+        l2.setPath(path4_14);
         lads.add(l2);
 
         Ladder l3 = new Ladder();

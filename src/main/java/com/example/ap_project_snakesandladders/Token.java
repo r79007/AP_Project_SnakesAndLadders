@@ -60,7 +60,7 @@ public class Token {
         this.y_coordinate = y_coordinate;
     }
     static int i1=0;
-    public static void move(Token t1, Token t2, int number, Shape path1, ImageView red, ImageView green) throws InterruptedException{
+    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false){
             t1.setStatus(true);
             n=0;
@@ -70,9 +70,9 @@ public class Token {
                     TranslateTransition translate = new TranslateTransition();
                     translate.setNode(red);
                     translate.setDuration(Duration.millis(1000));
-                    translate.setByX((49) * (1 - 1) + 26 + 49);
+                    translate.setByX((49) * (number - 1) + 26 + 49);
                     translate.setByY(13);
-                    t1.setX_coordinate(1);
+                    t1.setX_coordinate(number);
                     translate.play();
                     i1++;
                 }else{
@@ -80,8 +80,8 @@ public class Token {
                         System.out.println(t1.x_coordinate);
 
                         if(i.getPos() == t1.getX_coordinate()){
-                            System.out.println(t1.getX_coordinate());
-
+                            System.out.println(i.getPos());
+                            t1.setX_coordinate(i.getF_pos());
 
                             red.setX(red.getLayoutX());
                             red.setY(red.getLayoutY());
@@ -89,13 +89,14 @@ public class Token {
                             red.setLayoutY(0);
                             PathTransition pt = new PathTransition();
                             pt.setNode(red);
-                            pt.setPath(path1);
+                            pt.setPath(i.getPath());
                             pt.setDuration(Duration.millis(1000));
                             pt.play();
+                            break;
                         }
 
 
-                        break;
+
                     }
                 }
             }));
@@ -205,21 +206,23 @@ public class Token {
             thread.start();        }
     }
 
-    static class Loop<T extends Token> extends Thread{
+    static class Loop<T extends Token> extends Thread {
         T token;
         int num;
         ImageView imgv;
-        public Loop(T token, int num, ImageView imgv){
-            this.token=token;
-            this.num=num;
-            this.imgv=imgv;
+
+        public Loop(T token, int num, ImageView imgv) {
+            this.token = token;
+            this.num = num;
+            this.imgv = imgv;
         }
+
         @Override
         public void run() {
 
-            while(num>0){
+            while (num > 0) {
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
-                    if(this.token.getX_coordinate()%20<10) {
+                    if (this.token.getX_coordinate() % 20 < 10) {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                         System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
@@ -230,7 +233,7 @@ public class Token {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }else{
+                    } else {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                         System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
@@ -242,9 +245,8 @@ public class Token {
                             e.printStackTrace();
                         }
                     }
-                }
-                else{
-                    Moves<T> th=new Moves<>(this.token,1,1, imgv);
+                } else {
+                    Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
                     System.out.println(this.token.getX_coordinate());
                     th.setCoordinate(0);
                     th.setDir(1);
@@ -257,7 +259,30 @@ public class Token {
                 }
                 num--;
             }
+            for (Ladder i : HelloController.getLads()) {
+                System.out.println(this.token.getX_coordinate());
 
+                if (i.getPos() == this.token.getX_coordinate()) {
+                    System.out.println(i.getPos());
+                    this.token.setX_coordinate(i.getF_pos());
+
+                    imgv.setX(imgv.getLayoutX());
+                    imgv.setY(imgv.getLayoutY());
+                    imgv.setLayoutX(0);
+                    imgv.setLayoutY(0);
+                    PathTransition pt = new PathTransition();
+                    pt.setNode(imgv);
+                    pt.setPath(i.getPath());
+                    pt.setDuration(Duration.millis(1000));
+                    pt.play();
+                    break;
+                }
+
+
+
+
+
+            }
         }
     }
     static class Moves<T extends Token> extends Thread{
