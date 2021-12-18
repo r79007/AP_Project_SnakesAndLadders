@@ -115,6 +115,13 @@ public class HelloController implements Initializable {
 
     public double desx;
     public double desy;
+
+    @FXML
+    private ImageView rollingDice;
+
+    @FXML
+    private ImageView downArrow;
+
     public void ask2move(MouseEvent event, Label locval){
         locval.setText("Move to X:"+String.valueOf(event.getSceneX())+"Y:"+String.valueOf(event.getSceneY()));
         desx=event.getSceneX();
@@ -132,24 +139,110 @@ public class HelloController implements Initializable {
     private Player p2;
     Random rand = new Random();
 
+    static int i2=0;
     @FXML
     void roll_button(ActionEvent event) throws InterruptedException{
-        playTimer();
-        number = rand.nextInt(6)+1;
-        String path = "src/main/resources/dice"+number+".png";
-        File file = new File(path);
-        dice.setImage(new Image(file.toURI().toString()));
-        move();
+        downArrow.setVisible(false);
+        //playTimer(-1);
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
+                new KeyFrame(Duration.seconds(15), e-> {
+
+                }, new KeyValue(progress.progressProperty(), 1))
+        );
+        //timeline.stop();
+        Thread th1=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //rollingDice.setVisible(true);
+                i2++;
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        //timeline1.stop();
+                        rollingDice.setVisible(true);
+                        dice.setVisible(false);
+                        //downArrow.setVisible(true);
+                    }
+                });
+                Timeline timeline=new Timeline(new KeyFrame(Duration.seconds(1),event1 -> {
+//                    if(i2==0) {
+//                        rollingDice.setVisible(true);
+//                        i2++;
+                    if(i2==1){
+                        rollingDice.setVisible(false);
+                        Platform.runLater(new Runnable() {
+                            @Override public void run() {
+                                //timeline1.stop();
+                                dice.setVisible(true);
+                                //downArrow.setVisible(true);
+                            }
+                        });
+                        i2=0;
+                    }
+
+                }));
+                timeline.setCycleCount(1);
+                timeline.play();
+
+            }
+        });
+//        Thread th3=new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//
+//            }
+//        });
+        Thread th2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //rollingDice.setVisible(false);
+                number = rand.nextInt(6)+1;
+                String path = "src/main/resources/dice"+number+".png";
+                File file = new File(path);
+
+                dice.setImage(new Image(file.toURI().toString()));
+
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    move();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        timeline1.play();
+                        downArrow.setVisible(true);
+                    }
+                });
+            }
+        });
+
+
+        th1.start();
+        //th1.join(2000);
+        th2.start();
+
     }
 
-    void playTimer(){
+    void playTimer(int option){
+        downArrow.setVisible(true);
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(15), e-> {
 
                 }, new KeyValue(progress.progressProperty(), 1))
         );
-        timeline.play();
+        if(option>0) {
+            timeline.play();
+        }else{
+            timeline.stop();
+        }
+        //downArrow.setVisible(false);
     }
     int i=0;
     public void move() throws InterruptedException {
@@ -488,5 +581,6 @@ public class HelloController implements Initializable {
         l9.setF_pos(100);
         l9.setPath(path80_100);
         lads.add(l9);
+        playTimer(1);
     }
 }
