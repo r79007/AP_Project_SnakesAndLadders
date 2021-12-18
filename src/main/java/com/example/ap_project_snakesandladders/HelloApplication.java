@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
-    static ArrayList<Snake> snakes = new ArrayList<>();
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -100,69 +98,69 @@ public class HelloApplication extends Application {
 //        l9.setF_pos(100);
 //        //l9.setPath(path80_100);
 //        lads.add(l9);
-
-        Snake s1 = new Snake();
-        s1.setF_pos(6);
-        s1.setPos(16);
-        s1.setTranslate_X(1);
-        s1.setTranslate_y(-1);
-        snakes.add(s1);
-
-        Snake s2 = new Snake();
-        s2.setF_pos(26);
-        s2.setPos(47);
-        s2.setTranslate_X(-1);
-        s2.setTranslate_y(-2);
-        snakes.add(s2);
-
-        Snake s3 = new Snake();
-        s3.setF_pos(11);
-        s3.setPos(49);
-        s3.setTranslate_X(1);
-        s3.setTranslate_y(-3);
-        snakes.add(s3);
-
-        Snake s4 = new Snake();
-        s4.setF_pos(53);
-        s4.setPos(56);
-        s4.setTranslate_X(3);
-        s4.setTranslate_y(0);
-        snakes.add(s4);
-
-        Snake s5 = new Snake();
-        s5.setF_pos(60);
-        s5.setPos(64);
-        s5.setTranslate_X(-3);
-        s5.setTranslate_y(-1);
-        snakes.add(s5);
-
-        Snake s6 = new Snake();
-        s5.setF_pos(24);
-        s5.setPos(87);
-        s5.setTranslate_X(-3);
-        s5.setTranslate_y(-6);
-        snakes.add(s6);
-
-        Snake s7 = new Snake();
-        s7.setF_pos(73);
-        s7.setPos(93);
-        s7.setTranslate_X(0);
-        s7.setTranslate_y(-2);
-        snakes.add(s7);
-
-        Snake s8 = new Snake();
-        s8.setF_pos(75);
-        s8.setPos(95);
-        s8.setTranslate_X(0);
-        s8.setTranslate_y(-2);
-        snakes.add(s8);
-
-        Snake s9 = new Snake();
-        s9.setF_pos(78);
-        s9.setPos(98);
-        s9.setTranslate_X(0);
-        s9.setTranslate_y(-2);
-        snakes.add(s9);
+//
+//        Snake s1 = new Snake();
+//        s1.setF_pos(6);
+//        s1.setPos(16);
+//        s1.setTranslate_X(1);
+//        s1.setTranslate_y(-1);
+//        snakes.add(s1);
+//
+//        Snake s2 = new Snake();
+//        s2.setF_pos(26);
+//        s2.setPos(47);
+//        s2.setTranslate_X(-1);
+//        s2.setTranslate_y(-2);
+//        snakes.add(s2);
+//
+//        Snake s3 = new Snake();
+//        s3.setF_pos(11);
+//        s3.setPos(49);
+//        s3.setTranslate_X(1);
+//        s3.setTranslate_y(-3);
+//        snakes.add(s3);
+//
+//        Snake s4 = new Snake();
+//        s4.setF_pos(53);
+//        s4.setPos(56);
+//        s4.setTranslate_X(3);
+//        s4.setTranslate_y(0);
+//        snakes.add(s4);
+//
+//        Snake s5 = new Snake();
+//        s5.setF_pos(60);
+//        s5.setPos(64);
+//        s5.setTranslate_X(-3);
+//        s5.setTranslate_y(-1);
+//        snakes.add(s5);
+//
+//        Snake s6 = new Snake();
+//        s5.setF_pos(24);
+//        s5.setPos(87);
+//        s5.setTranslate_X(-3);
+//        s5.setTranslate_y(-6);
+//        snakes.add(s6);
+//
+//        Snake s7 = new Snake();
+//        s7.setF_pos(73);
+//        s7.setPos(93);
+//        s7.setTranslate_X(0);
+//        s7.setTranslate_y(-2);
+//        snakes.add(s7);
+//
+//        Snake s8 = new Snake();
+//        s8.setF_pos(75);
+//        s8.setPos(95);
+//        s8.setTranslate_X(0);
+//        s8.setTranslate_y(-2);
+//        snakes.add(s8);
+//
+//        Snake s9 = new Snake();
+//        s9.setF_pos(78);
+//        s9.setPos(98);
+//        s9.setTranslate_X(0);
+//        s9.setTranslate_y(-2);
+//        snakes.add(s9);
 
         launch();
     }

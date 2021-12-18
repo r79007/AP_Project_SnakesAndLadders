@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Polyline?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
    <children>
@@ -41,7 +41,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="downArrow" fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
+      <ImageView fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../../rightArrow.gif" />
          </image>
@@ -68,21 +68,30 @@
             <Bloom />
          </effect>
       </ProgressBar>
-      <Line fx:id="path1_38" endX="101.33331298828125" endY="-144.33334350585938" layoutX="240.0" layoutY="477.0" startX="4.0" startY="1.666656494140625" />
-      <Line fx:id="path4_14" endX="140.0" endY="-37.333343505859375" layoutX="398.0" layoutY="470.0" startX="-5.999969482421875" startY="10.666656494140625" />
-      <Line fx:id="path9_31" endX="64.0" endY="-135.33334350585938" layoutX="624.0" layoutY="470.0" startX="12.0" startY="11.333343505859375" />
-      <Line fx:id="path28_84" endX="-195.33334350585938" endY="-294.3333435058594" layoutX="588.0" layoutY="383.0" startY="1.0" />
-      <Line fx:id="path21_42" endX="49.000030517578125" endY="-93.33334350585938" layoutX="243.0" layoutY="382.0" startX="-0.9999847412109375" startY="0.666656494140625" />
-      <Line fx:id="path36_44" endX="-36.333343505859375" endY="-48.0" layoutX="433.0" layoutY="332.0" startX="7.666656494140625" startY="6.666656494140625" />
-      <Line fx:id="path51_67" endX="-147.66668701171875" endY="-51.99998474121094" layoutX="689.0" layoutY="236.0" startX="0.33331298828125" startY="1.52587890625E-5" />
-      <Line fx:id="path71_91" endX="4.6666259765625" endY="-89.66665649414062" layoutX="684.0" layoutY="137.0" startX="4.6666259765625" />
-      <Line fx:id="path80_100" endX="1.0000152587890625" endY="-97.33332824707031" layoutX="243.0" layoutY="138.0" startX="1.0000152587890625" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ec0e26" height="139.0" layoutX="714.0" layoutY="371.0" stroke="#ec0e26" strokeType="INSIDE" width="16.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ec0e26" height="279.0" layoutX="714.0" layoutY="15.0" stroke="#ec0e26" strokeType="INSIDE" width="16.0" />
-      <ImageView fx:id="rollingDice" fitHeight="76.0" fitWidth="79.0" layoutX="433.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../rollingDice.gif" />
-         </image>
-      </ImageView>
+      <Line fx:id="path1_38" endX="100.66668701171875" endY="-147.66665649414062" layoutX="240.0" layoutY="477.0" opacity="0.0" startX="4.0" startY="1.666656494140625" />
+      <Line fx:id="path4_14" endX="139.33331298828125" endY="-44.0" layoutX="398.0" layoutY="470.0" opacity="0.0" startX="-5.999969482421875" startY="10.666656494140625" />
+      <Line fx:id="path9_31" endX="62.0" endY="-140.66665649414062" layoutX="624.0" layoutY="470.0" opacity="0.0" startX="12.0" startY="11.333343505859375" />
+      <Line fx:id="path28_84" endX="-199.33334350585938" endY="-300.3333435058594" layoutX="588.0" layoutY="383.0" opacity="0.0" startY="1.0" />
+      <Line fx:id="path21_42" endX="48.333343505859375" endY="-96.0" layoutX="243.0" layoutY="382.0" opacity="0.0" startX="-0.9999847412109375" startY="0.666656494140625" />
+      <Line fx:id="path36_44" endX="-36.333343505859375" endY="-48.0" layoutX="433.0" layoutY="332.0" opacity="0.0" startX="7.666656494140625" startY="6.666656494140625" />
+      <Line fx:id="path51_67" endX="-149.66668701171875" endY="-56.0" layoutX="689.0" layoutY="236.0" opacity="0.0" startX="0.33331298828125" startY="1.52587890625E-5" />
+      <Line fx:id="path71_91" endX="4.6666259765625" endY="-97.66667175292969" layoutX="684.0" layoutY="137.0" opacity="0.0" startX="4.6666259765625" />
+      <Line fx:id="path80_100" endX="1.0000152587890625" endY="-102.66667175292969" layoutX="243.0" layoutY="138.0" opacity="0.0" startX="1.0000152587890625" />
+      <Polyline fx:id="line87_24_1" fill="CHARTREUSE" layoutX="523.0" layoutY="185.0" opacity="0.0" points="15.6666259765625, -95.66666412353516, 25.6666259765625, -51.0, 9.0, -23.666656494140625, -135.04043579101562, 48.33332824707031" strokeType="INSIDE" />
+      <Polyline fx:id="line87_24_2" fill="CHARTREUSE" layoutX="388.0" layoutY="373.0" opacity="0.0" points="3.0517578125E-5, -133.66665649414062, 3.0517578125E-5, -104.33334350585938, 82.00003051757812, -58.333343505859375, 89.33334350585938, -22.333343505859375" strokeType="INSIDE" />
+      <Polyline fx:id="line87_24_3" fill="CHARTREUSE" layoutX="353.0" layoutY="459.0" opacity="0.0" points="126.33334350585938, -110.33334350585938, 106.33334350585938, -81.0, 64.33334350585938, -60.333343505859375, 38.333343505859375, -81.0" strokeType="INSIDE" />
+      <Polyline fx:id="line16_6_1" fill="CHARTREUSE" layoutX="433.0" layoutY="459.0" opacity="0.0" points="6.333343505859375, -25.666656494140625, -34.333343505859375, -19.000030517578125, -46.333343505859375, 0.333343505859375, -16.333343505859375, 14.999969482421875" strokeType="INSIDE" />
+      <Polyline fx:id="line47_26_1" fill="CHARTREUSE" layoutX="577.0" layoutY="341.0" opacity="0.0" points="-33.66668701171875, -56.333343505859375, 15.6666259765625, -49.66668701171875, 25.0, -32.333343505859375, 8.33331298828125, -10.333343505859375" strokeType="INSIDE" />
+      <Polyline fx:id="line47_26_2" fill="CHARTREUSE" layoutX="573.0" layoutY="398.0" opacity="0.0" points="9.6666259765625, -68.0, -19.66668701171875, -56.66668701171875, -38.3333740234375, -17.333343505859375, -83.66665649414062, -17.333343505859375" strokeType="INSIDE" />
+      <Polyline fx:id="line49_11_1" fill="CHARTREUSE" layoutX="664.0" layoutY="351.0" opacity="0.0" points="-25.3333740234375, -67.0, 37.33331298828125, -58.333343505859375, 54.6666259765625, -31.66668701171875, 21.33331298828125, 78.33334350585938" strokeType="INSIDE" />
+      <Polyline fx:id="line56_53_1" fill="CHARTREUSE" layoutX="441.0" layoutY="273.0" opacity="0.0" points="-3.0517578125E-5, -39.99998474121094, 34.333343505859375, -62.33332824707031, 86.3333740234375, -46.33332824707031, 145.66668701171875, -31.666671752929688" strokeType="INSIDE" />
+      <Polyline fx:id="line64_60_1" fill="CHARTREUSE" layoutX="267.0" layoutY="301.0" opacity="0.0" points="125.66665649414062, -115.66667175292969, 70.33334350585938, -100.33332824707031, 12.333343505859375, -50.99998474121094, -24.999984741210938, -67.66667175292969" strokeType="INSIDE" />
+      <Polyline fx:id="line62_19_1" fill="CHARTREUSE" layoutX="276.0" layoutY="312.0" opacity="0.0" points="16.000030517578125, -128.6666717529297, 67.33334350585938, -61.99998474121094, 67.33334350585938, -28.0, 29.333343505859375, 26.0" strokeType="INSIDE" />
+      <Polyline fx:id="line62_19_2" fill="CHARTREUSE" layoutX="292.0" layoutY="425.0" opacity="0.0" points="13.33331298828125, -87.66665649414062, 22.0, -56.333343505859375, 61.33331298828125, -13.0, 52.666656494140625, 12.33331298828125" strokeType="INSIDE" />
+      <Polyline fx:id="line62_19_3" fill="CHARTREUSE" layoutX="198.0" layoutY="364.0" opacity="0.0" points="144.66665649414062, 73.33334350585938, 133.33334350585938, 83.33334350585938, 111.33334350585938, 83.33334350585938, 91.33334350585938, 64.66665649414062" strokeType="INSIDE" />
+      <Polyline fx:id="line93_73_1" fill="CHARTREUSE" layoutX="589.0" layoutY="101.0" opacity="0.0" points="0.0, -64.33332824707031, 51.0, -51.66666030883789, 51.0, -20.333335876464844, 0.0, 35.0" strokeType="INSIDE" />
+      <Polyline fx:id="line95_75_1" fill="CHARTREUSE" layoutX="413.0" layoutY="101.0" opacity="0.0" points="76.33334350585938, -63.66666793823242, 20.333343505859375, -51.000003814697266, 14.333343505859375, -24.333335876464844, 76.33334350585938, 33.66667175292969" strokeType="INSIDE" />
+      <Polyline fx:id="line98_78_1" fill="CHARTREUSE" layoutX="259.0" layoutY="97.0" opacity="0.0" points="82.99996948242188, -59.66666793823242, 20.333343505859375, -51.000003814697266, 14.333343505859375, -24.333335876464844, 82.99996948242188, 37.66667175292969" strokeType="INSIDE" />
+      <Polyline fx:id="line16_6_2" fill="CHARTREUSE" layoutX="583.0" layoutY="428.0" opacity="0.0" points="-160.33334350585938, 41.333343505859375, -138.99996948242188, 49.333343505859375, -116.99996948242188, 69.99996948242188, -93.66665649414062, 49.333343505859375" strokeType="INSIDE" />
    </children>
 </AnchorPane>

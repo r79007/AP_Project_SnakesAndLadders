@@ -1,10 +1,23 @@
 package com.example.ap_project_snakesandladders;
 
+import javafx.scene.shape.Polyline;
+
+import java.util.ArrayList;
+
 public class Snake {
     private int translate_X;
     private int translate_y;
     private int pos;
     private int f_pos;
+    ArrayList<Polyline> lines = new ArrayList<>();
+
+    public ArrayList<Polyline> getLines() {
+        return lines;
+    }
+
+    public void setLines(Polyline l){
+        lines.add(l);
+    }
 
     public int getF_pos() {
         return f_pos;

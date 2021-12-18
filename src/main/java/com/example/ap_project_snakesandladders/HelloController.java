@@ -13,12 +13,10 @@ import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import javafx.scene.shape.Line;
+
 import javax.print.attribute.standard.RequestingUserName;
 import java.awt.*;
 import java.io.File;
@@ -31,10 +29,47 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
 
     private static ArrayList<Ladder> lads = new ArrayList<>();
+    private static ArrayList<Snake> snakes = new ArrayList<>();
+
+    public static ArrayList<Snake> getSnakes() {
+        return snakes;
+    }
 
     public static ArrayList<Ladder> getLads() {
         return lads;
     }
+    @FXML
+    private Polyline line87_24_1;
+    @FXML
+    private Polyline line87_24_2;
+    @FXML
+    private Polyline line87_24_3;
+    @FXML
+    private Polyline line16_6_1;
+    @FXML
+    private Polyline line16_6_2;
+    @FXML
+    private Polyline line49_11_1;
+    @FXML
+    private Polyline line47_26_1;
+    @FXML
+    private Polyline line47_26_2;
+    @FXML
+    private Polyline line56_53_1;
+    @FXML
+    private Polyline line62_19_1;
+    @FXML
+    private Polyline line62_19_2;
+    @FXML
+    private Polyline line62_19_3;
+    @FXML
+    private Polyline line64_60_1;
+    @FXML
+    private Polyline line93_73_1;
+    @FXML
+    private Polyline line95_75_1;
+    @FXML
+    private Polyline line98_78_1;
 
     @FXML
     public Line path1_38;
@@ -69,14 +104,6 @@ public class HelloController implements Initializable {
     private Label locval;
     @FXML
     private ProgressBar progress;
-
-
-    @FXML
-    private ImageView rollingDice;
-
-    @FXML
-    private ImageView downArrow;
-
     @FXML
     void findloc(MouseEvent event) {
         ask2move(event,locval);
@@ -104,116 +131,32 @@ public class HelloController implements Initializable {
     private Button butt;    private Player p1;
     private Player p2;
     Random rand = new Random();
-    static int i2=0;
+
     @FXML
     void roll_button(ActionEvent event) throws InterruptedException{
-        downArrow.setVisible(false);
-        //playTimer(-1);
-        Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
-                new KeyFrame(Duration.seconds(15), e-> {
-
-                }, new KeyValue(progress.progressProperty(), 1))
-        );
-        //timeline.stop();
-        Thread th1=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //rollingDice.setVisible(true);
-                i2++;
-                Platform.runLater(new Runnable() {
-                    @Override public void run() {
-                        //timeline1.stop();
-                        rollingDice.setVisible(true);
-                        dice.setVisible(false);
-                        //downArrow.setVisible(true);
-                    }
-                });
-                Timeline timeline=new Timeline(new KeyFrame(Duration.seconds(1),event1 -> {
-//                    if(i2==0) {
-//                        rollingDice.setVisible(true);
-//                        i2++;
-                    if(i2==1){
-                        rollingDice.setVisible(false);
-                        Platform.runLater(new Runnable() {
-                            @Override public void run() {
-                                //timeline1.stop();
-                                dice.setVisible(true);
-                                //downArrow.setVisible(true);
-                            }
-                        });
-                        i2=0;
-                    }
-
-                }));
-                timeline.setCycleCount(1);
-                timeline.play();
-
-            }
-        });
-//        Thread th3=new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//
-//            }
-//        });
-        Thread th2=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //rollingDice.setVisible(false);
-                number = rand.nextInt(6)+1;
-                String path = "src/main/resources/dice"+number+".png";
-                File file = new File(path);
-
-                dice.setImage(new Image(file.toURI().toString()));
-
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    move();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.runLater(new Runnable() {
-                    @Override public void run() {
-                        timeline1.play();
-                        downArrow.setVisible(true);
-                    }
-                });
-            }
-        });
-
-
-        th1.start();
-        //th1.join(2000);
-        th2.start();
-
+        playTimer();
+        number = rand.nextInt(6)+1;
+        String path = "src/main/resources/dice"+number+".png";
+        File file = new File(path);
+        dice.setImage(new Image(file.toURI().toString()));
+        move();
     }
 
-    void playTimer(int option){
-        downArrow.setVisible(true);
+    void playTimer(){
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
                 new KeyFrame(Duration.seconds(15), e-> {
 
                 }, new KeyValue(progress.progressProperty(), 1))
         );
-        if(option>0) {
-            timeline.play();
-        }else{
-            timeline.stop();
-        }
-        //downArrow.setVisible(false);
+        timeline.play();
     }
     int i=0;
     public void move() throws InterruptedException {
         Token.move(redToken,greenToken,number,redDie,greenDie);
+        //Token.move(redToken,greenToken,87-number,redDie,greenDie);
     }
-//        if(n == 1 && redToken.getStatus() == false){
+    //        if(n == 1 && redToken.getStatus() == false){
 //            redToken.setStatus(true);
 //            n=0;
 //            Thread th1=new Thread(new Runnable() {
@@ -403,6 +346,77 @@ public class HelloController implements Initializable {
 //    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        redToken.setX_coordinate(85);
+//        redToken.setStatus(true);
+
+        Snake s1 = new Snake();
+        s1.setF_pos(6);
+        s1.setPos(16);
+        s1.setLines(line16_6_1);
+        s1.setLines(line16_6_2);
+        snakes.add(s1);
+
+        Snake s2 = new Snake();
+        s2.setF_pos(26);
+        s2.setPos(47);
+        s2.setLines(line47_26_1);
+        s2.setLines(line47_26_2);
+        snakes.add(s2);
+
+        Snake s3 = new Snake();
+        s3.setF_pos(11);
+        s3.setPos(49);
+        s3.setLines(line49_11_1);
+        snakes.add(s3);
+
+        Snake s4 = new Snake();
+        s4.setF_pos(53);
+        s4.setPos(56);
+        s4.setLines(line56_53_1);
+        snakes.add(s4);
+
+        Snake s5 = new Snake();
+        s5.setF_pos(60);
+        s5.setPos(64);
+        s5.setLines(line64_60_1);
+        snakes.add(s5);
+
+
+        Snake s6 = new Snake();
+        s6.setF_pos(24);
+        s6.setPos(87);
+        s6.setLines(line87_24_1);
+        s6.setLines(line87_24_2);
+        s6.setLines(line87_24_3);
+        snakes.add(s1);
+
+        Snake s7 = new Snake();
+        s7.setF_pos(73);
+        s7.setPos(93);
+        s7.setLines(line93_73_1);
+        snakes.add(s7);
+
+        Snake s8 = new Snake();
+        s8.setF_pos(75);
+        s8.setPos(95);
+        s8.setLines(line95_75_1);
+        snakes.add(s8);
+
+        Snake s9 = new Snake();
+        s9.setF_pos(78);
+        s9.setPos(98);
+        s9.setLines(line98_78_1);
+        snakes.add(s9);
+
+        Snake s10 = new Snake();
+        s9.setF_pos(19);
+        s9.setPos(62);
+        s9.setLines(line62_19_1);
+        s9.setLines(line62_19_2);
+        s9.setLines(line62_19_3);
+        snakes.add(s9);
+
+
         Ladder l1 = new Ladder();
         l1.setPos(1);
         l1.setTranslate_X(2);
@@ -474,7 +488,5 @@ public class HelloController implements Initializable {
         l9.setF_pos(100);
         l9.setPath(path80_100);
         lads.add(l9);
-
-        playTimer(1);
     }
 }

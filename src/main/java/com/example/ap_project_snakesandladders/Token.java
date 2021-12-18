@@ -9,8 +9,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
 
 public class Token {
     @FXML
@@ -60,6 +63,7 @@ public class Token {
         this.y_coordinate = y_coordinate;
     }
     static int i1=0;
+    static int i2=0;
     public static void move(Token t1, Token t2, int number, ImageView red, ImageView green) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false){
             t1.setStatus(true);
@@ -94,9 +98,6 @@ public class Token {
                             pt.play();
                             break;
                         }
-
-
-
                     }
                 }
             }));
@@ -178,34 +179,75 @@ public class Token {
 //            }
         }
         else if(n == 0 && t2.getStatus() == false){
+//            t2.setStatus(true);
+//            n=1;
+//            TranslateTransition translate = new TranslateTransition();
+//            translate.setNode(green);
+//            translate.setDuration(Duration.millis(1000));
+//            translate.setByX((49)*(number-1)+26+49);
+//            translate.setByY(-13);
+//            t2.setX_coordinate(number);
+//            System.out.println((int) t2.getX_coordinate());
+//            translate.play();
+
             t2.setStatus(true);
             n=1;
-            TranslateTransition translate = new TranslateTransition();
-            translate.setNode(green);
-            translate.setDuration(Duration.millis(1000));
-            translate.setByX((49)*(number-1)+26+49);
-            translate.setByY(-13);
-            t2.setX_coordinate(number);
-            System.out.println((int) t2.getX_coordinate());
-            translate.play();
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
+                if(i2==0){
+                    TranslateTransition translate = new TranslateTransition();
+                    translate.setNode(green);
+                    translate.setDuration(Duration.millis(1000));
+                    translate.setByX((49) * (number - 1) + 26 + 49);
+                    translate.setByY(-13);
+                    t2.setX_coordinate(number);
+                    translate.play();
+                    i2++;
+                }else{
+                    for(Ladder i : HelloController.getLads()){
+                        System.out.println(t2.x_coordinate);
+
+                        if(i.getPos() == t2.getX_coordinate()){
+                            System.out.println(i.getPos());
+                            t2.setX_coordinate(i.getF_pos());
+
+                            green.setX(green.getLayoutX());
+                            green.setY(green.getLayoutY());
+                            green.setLayoutX(0);
+                            green.setLayoutY(0);
+                            PathTransition pt = new PathTransition();
+                            pt.setNode(green);
+                            pt.setPath(i.getPath());
+                            pt.setDuration(Duration.millis(1000));
+                            pt.play();
+                            break;
+                        }
+                    }
+                }
+            }));
+            timeline.setCycleCount(2);
+            timeline.play();
+
+
         }
         else if(n == 1) {
             n = 0;
             int num = number;
             System.out.println("Red");
 
-            Loop<Token> thread=new Loop<>(t1,number,red);
+            Loop<Token> thread=new Loop<>(t1,num,red);
             thread.start();
 
         }
         else if(n == 0){
             n=1;
             int num = number;
-            System.out.println("green");            
-            Loop<Token> thread=new Loop<>(t2,number,green);
+            System.out.println("green");
+            Loop<Token> thread=new Loop<>(t2,num,green);
             thread.start();        }
     }
 
+    static int k=0;
     static class Loop<T extends Token> extends Thread {
         T token;
         int num;
@@ -259,6 +301,32 @@ public class Token {
                 }
                 num--;
             }
+
+            //ArrayList<Snake> snakes = HelloController.getSnakes();
+            for(Snake i : HelloController.getSnakes()){
+                if(i.getPos() == this.token.getX_coordinate()){
+                    this.token.setX_coordinate(i.getF_pos());
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event ->{
+                        Polyline l = i.getLines().get(k);
+                        imgv.setX(imgv.getLayoutX());
+                        imgv.setY(imgv.getLayoutY());
+                        imgv.setLayoutX(0);
+                        imgv.setLayoutY(0);
+                        PathTransition pt = new PathTransition();
+                        pt.setNode(imgv);
+                        pt.setPath(l);
+                        pt.setDuration(Duration.millis(1000));
+                        pt.play();
+                        k++;
+                    }));
+                    timeline.setCycleCount(i.getLines().size());
+                    timeline.play();
+                    k=0;
+                    return;
+                }
+            }
+
+
             for (Ladder i : HelloController.getLads()) {
                 System.out.println(this.token.getX_coordinate());
 
@@ -275,13 +343,8 @@ public class Token {
                     pt.setPath(i.getPath());
                     pt.setDuration(Duration.millis(1000));
                     pt.play();
-                    break;
+                    return;
                 }
-
-
-
-
-
             }
         }
     }
