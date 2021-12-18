@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
    <children>
@@ -40,7 +41,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="downArrow" fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
          <image>
             <Image url="@../../../rightArrow.gif" />
          </image>
@@ -76,5 +77,12 @@
       <Line fx:id="path51_67" endX="-147.66668701171875" endY="-51.99998474121094" layoutX="689.0" layoutY="236.0" startX="0.33331298828125" startY="1.52587890625E-5" />
       <Line fx:id="path71_91" endX="4.6666259765625" endY="-89.66665649414062" layoutX="684.0" layoutY="137.0" startX="4.6666259765625" />
       <Line fx:id="path80_100" endX="1.0000152587890625" endY="-97.33332824707031" layoutX="243.0" layoutY="138.0" startX="1.0000152587890625" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ec0e26" height="139.0" layoutX="714.0" layoutY="371.0" stroke="#ec0e26" strokeType="INSIDE" width="16.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ec0e26" height="279.0" layoutX="714.0" layoutY="15.0" stroke="#ec0e26" strokeType="INSIDE" width="16.0" />
+      <ImageView fx:id="rollingDice" fitHeight="76.0" fitWidth="79.0" layoutX="433.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../rollingDice.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
