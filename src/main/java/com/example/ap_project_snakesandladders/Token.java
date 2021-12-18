@@ -81,10 +81,10 @@ public class Token {
                     i1++;
                 }else{
                     for(Ladder i : HelloController.getLads()){
-                        System.out.println(t1.x_coordinate);
+                        //System.out.println(t1.x_coordinate);
 
                         if(i.getPos() == t1.getX_coordinate()){
-                            System.out.println(i.getPos());
+                            //System.out.println(i.getPos());
                             t1.setX_coordinate(i.getF_pos());
 
                             red.setX(red.getLayoutX());
@@ -205,10 +205,10 @@ public class Token {
                     i2++;
                 }else{
                     for(Ladder i : HelloController.getLads()){
-                        System.out.println(t2.x_coordinate);
+                        //System.out.println(t2.x_coordinate);
 
                         if(i.getPos() == t2.getX_coordinate()){
-                            System.out.println(i.getPos());
+                            //System.out.println(i.getPos());
                             t2.setX_coordinate(i.getF_pos());
 
                             green.setX(green.getLayoutX());
@@ -266,7 +266,7 @@ public class Token {
                 if ((int) this.token.getX_coordinate() % 10 != 0) {
                     if (this.token.getX_coordinate() % 20 < 10) {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
-                        System.out.println(this.token.getX_coordinate());
+                        //System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
                         th.setDir(1);
                         th.start();
@@ -277,7 +277,7 @@ public class Token {
                         }
                     } else {
                         Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
-                        System.out.println(this.token.getX_coordinate());
+                        //System.out.println(this.token.getX_coordinate());
                         th.setCoordinate(1);
                         th.setDir(-1);
                         th.start();
@@ -289,7 +289,7 @@ public class Token {
                     }
                 } else {
                     Moves<T> th = new Moves<>(this.token, 1, 1, imgv);
-                    System.out.println(this.token.getX_coordinate());
+                    //System.out.println(this.token.getX_coordinate());
                     th.setCoordinate(0);
                     th.setDir(1);
                     th.start();
@@ -304,7 +304,9 @@ public class Token {
 
             //ArrayList<Snake> snakes = HelloController.getSnakes();
             for(Snake i : HelloController.getSnakes()){
+                System.out.println(i.getPos());
                 if(i.getPos() == this.token.getX_coordinate()){
+                    System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
                     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event ->{
                         Polyline l = i.getLines().get(k);
