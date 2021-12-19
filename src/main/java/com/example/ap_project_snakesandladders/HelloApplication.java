@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
@@ -21,13 +22,37 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        URL url = this.getClass().getResource("/style.css");
+        if (url == null) {
+            System.out.println("Resource not found. Aborting.");
+            System.exit(-1);
+        }
+        String css = url.toExternalForm();
+        scene.getStylesheets().add(css);
         stage.show();
         System.out.println("hello\n");
         //Token red = new Token();
     }
-
+///src/main/java/com.example.ap_project_snakesandladders/style.css
     public static void main(String[] args) {
-//        Ladder l1 = new Ladder();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //        Ladder l1 = new Ladder();
 //        l1.setPos(1);
 //        l1.setTranslate_X(2);
 //        l1.setTranslate_y(3);

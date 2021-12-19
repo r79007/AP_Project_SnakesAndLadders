@@ -104,6 +104,7 @@ public class HelloController implements Initializable {
     private Label locval;
     @FXML
     private ProgressBar progress;
+
     @FXML
     void findloc(MouseEvent event) {
         ask2move(event,locval);
@@ -119,8 +120,16 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView rollingDice;
 
+
+
     @FXML
     private ImageView downArrow;
+
+    @FXML
+    private ImageView bottomBarLeft;
+
+    @FXML
+    private ImageView bottomBarRight;
 
     public void ask2move(MouseEvent event, Label locval){
         locval.setText("Move to X:"+String.valueOf(event.getSceneX())+"Y:"+String.valueOf(event.getSceneY()));
@@ -209,6 +218,7 @@ public class HelloController implements Initializable {
                     e.printStackTrace();
                 }
                 try {
+
                     move();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -217,6 +227,13 @@ public class HelloController implements Initializable {
                     @Override public void run() {
                         timeline1.play();
                         downArrow.setVisible(true);
+                        if(bottomBarLeft.isVisible()==false){
+                            bottomBarRight.setVisible(false);
+                            bottomBarLeft.setVisible(true);
+                        }else{
+                            bottomBarLeft.setVisible(false);
+                            bottomBarRight.setVisible(true);
+                        }
                     }
                 });
             }
@@ -255,7 +272,7 @@ public class HelloController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        redToken.setX_coordinate(61);
 //        redToken.setStatus(true);
-
+        progress.setStyle("-fx-background-color: darkslateblue;-fx-accent: rgba(0, 138, 230, 0.85);");
         Snake s1 = new Snake();
         s1.setF_pos(6);
         s1.setPos(16);

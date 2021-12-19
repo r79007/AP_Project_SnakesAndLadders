@@ -23,12 +23,12 @@
             <Image url="@../../../boardNew.jpeg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="220.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="90.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_green.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="54.0" layoutX="657.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="54.0" layoutX="839.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_red.png" />
          </image>
@@ -41,16 +41,6 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="downArrow" fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
-         <image>
-            <Image url="@../../../rightArrow.gif" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="dice" fitHeight="56.0" fitWidth="56.0" layoutX="443.0" layoutY="555.0" onDragDetected="#roll_button" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../dice1.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="redDie" fitHeight="66.0" fitWidth="56.0" layoutX="146.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_red.png" />
@@ -61,9 +51,8 @@
             <Image url="@../../../token_green.png" />
          </image>
       </ImageView>
-      <Button fx:id="butt" layoutX="444.0" layoutY="557.0" mnemonicParsing="false" onAction="#roll_button" opacity="0.0" prefHeight="56.0" prefWidth="52.0" text="Button" />
       <Label fx:id="locval" layoutX="815.0" layoutY="61.0" text="Label" />
-      <ProgressBar fx:id="progress" layoutX="353.0" layoutY="631.0" prefHeight="9.0" prefWidth="235.0" progress="0.0">
+      <ProgressBar fx:id="progress" layoutX="661.0" layoutY="156.0" prefHeight="10.0" prefWidth="223.0" progress="0.0" style="-fx-background-color: #DC143C;">
          <effect>
             <Bloom />
          </effect>
@@ -93,10 +82,43 @@
       <Polyline fx:id="line95_75_1" fill="CHARTREUSE" layoutX="413.0" layoutY="101.0" opacity="0.0" points="76.33334350585938, -63.66666793823242, 20.333343505859375, -51.000003814697266, 14.333343505859375, -24.333335876464844, 76.3333740234375, 25.666664123535156" strokeType="INSIDE" />
       <Polyline fx:id="line98_78_1" fill="CHARTREUSE" layoutX="259.0" layoutY="97.0" opacity="0.0" points="74.33334350585938, -59.000003814697266, 20.333343505859375, -51.000003814697266, 14.333343505859375, -24.333335876464844, 83.0, 30.99999237060547" strokeType="INSIDE" />
       <Polyline fx:id="line16_6_2" fill="CHARTREUSE" layoutX="583.0" layoutY="428.0" opacity="0.0" points="-162.33331298828125, 42.666656494140625, -140.33331298828125, 49.333343505859375, -116.33331298828125, 60.666656494140625, -93.66665649414062, 49.333343505859375" strokeType="INSIDE" />
-      <ImageView fx:id="rollingDice" fitHeight="76.0" fitWidth="88.0" layoutX="431.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="bottomBarRight" fitHeight="111.0" fitWidth="413.0" layoutX="284.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../bottomBarRightc.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="bottomBarLeft" fitHeight="111.0" fitWidth="413.0" layoutX="284.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../BottomBarLeftcc.jpg" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="dice" fitHeight="54.0" fitWidth="55.0" layoutX="445.0" layoutY="566.0" onDragDetected="#roll_button" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../dice1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rollingDice" fitHeight="76.0" fitWidth="73.0" layoutX="433.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../rollingDice.gif" />
          </image>
       </ImageView>
+      <Button fx:id="butt" layoutX="445.0" layoutY="567.0" mnemonicParsing="false" onAction="#roll_button" opacity="0.0" prefHeight="56.0" prefWidth="52.0" text="Button" />
+      <ImageView fx:id="downArrow" fitHeight="79.0" fitWidth="114.0" layoutX="433.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
+         <image>
+            <Image url="@../../../rightArrow.gif" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="pb1" layoutX="425.0" layoutY="544.0" prefHeight="10.0" prefWidth="93.0" progress="1.0" />
+      <ProgressBar fx:id="pb2" layoutX="479.0" layoutY="588.0" prefHeight="10.0" prefWidth="79.0" progress="0.0" rotate="90.0" />
+      <ProgressBar fx:id="pb4" layoutX="388.0" layoutY="588.0" prefHeight="10.0" prefWidth="79.0" progress="0.0" rotate="90.0" />
+      <ProgressBar fx:id="pb3" layoutX="427.0" layoutY="632.0" prefHeight="10.0" prefWidth="93.0" progress="0.0" />
+      <Label fx:id="player2L" layoutX="359.0" layoutY="584.0" prefHeight="18.0" prefWidth="59.0" style="-fx-background-color: #2b3b66;" text="Player 1" textAlignment="JUSTIFY" textFill="#bfb1b1" />
+      <Label fx:id="player2L" layoutX="528.0" layoutY="585.0" prefHeight="18.0" prefWidth="56.0" style="-fx-background-color: #2b3b66;" text="Player 2" textAlignment="CENTER" textFill="#bfb1b1" />
    </children>
 </AnchorPane>
