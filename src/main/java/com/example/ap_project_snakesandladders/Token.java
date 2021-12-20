@@ -329,7 +329,7 @@ public class Token {
                     timeline.setCycleCount(i.getLines().size());
                     timeline.play();
                     k=0;
-                    return;
+                    break;
                 }
             }
 
@@ -350,7 +350,7 @@ public class Token {
                     pt.setPath(i.getPath());
                     pt.setDuration(Duration.millis(1000));
                     pt.play();
-                    return;
+                    break;
                 }
             }
             if(token.getX_coordinate()==100) {
