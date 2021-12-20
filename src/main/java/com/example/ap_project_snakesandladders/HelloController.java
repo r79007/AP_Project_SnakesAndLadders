@@ -295,8 +295,8 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        redToken.setX_coordinate(99);
-//        redToken.setStatus(true);
+//        greenToken.setX_coordinate(99);
+//        greenToken.setStatus(true);
         //progress.setStyle("-fx-background-color: darkslateblue;-fx-accent: rgba(0, 138, 230, 0.85);");
         Snake s1 = new Snake();
         s1.setF_pos(6);
