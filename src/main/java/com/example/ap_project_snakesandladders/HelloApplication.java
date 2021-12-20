@@ -30,6 +30,7 @@ public class HelloApplication extends Application {
         String css = url.toExternalForm();
         scene.getStylesheets().add(css);
         stage.show();
+        HelloController.stage=stage;
         System.out.println("hello\n");
         //Token red = new Token();
     }

@@ -13,6 +13,7 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Token {
@@ -234,17 +235,21 @@ public class Token {
             n = 0;
             int num = number;
             System.out.println("Red");
-
-            Loop<Token> thread=new Loop<>(t1,num,red);
-            thread.start();
+            if(num<=100-t1.getX_coordinate()) {
+                Loop<Token> thread = new Loop<>(t1, num, red);
+                thread.start();
+            }
 
         }
         else if(n == 0){
             n=1;
             int num = number;
             System.out.println("green");
-            Loop<Token> thread=new Loop<>(t2,num,green);
-            thread.start();        }
+            if(num<=100-t2.getX_coordinate()) {
+                Loop<Token> thread=new Loop<>(t2,num,green);
+                thread.start();
+            }
+        }
     }
 
     static int k=0;
@@ -348,6 +353,29 @@ public class Token {
                     return;
                 }
             }
+            if(token.getX_coordinate()==100) {
+                Timeline tm=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            //if (token.getX_coordinate() == 100) {
+                            //SceneController scnt=new SceneController();
+                            HelloController hct = new HelloController();
+                            try {
+                                hct.switchToScene1();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //}
+                        }
+                    });
+                }));
+
+                tm.play();
+
+            }
+
+
         }
     }
     static class Moves<T extends Token> extends Thread{

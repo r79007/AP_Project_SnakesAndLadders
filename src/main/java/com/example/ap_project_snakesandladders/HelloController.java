@@ -1,10 +1,14 @@
 package com.example.ap_project_snakesandladders;
 import javafx.animation.*;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -15,11 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.print.attribute.standard.RequestingUserName;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.io.ObjectInputFilter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,6 +56,7 @@ public class HelloController implements Initializable {
     private Polyline line16_6_2;
     @FXML
     private Polyline line49_11_1;
+
     @FXML
     private Polyline line47_26_1;
     @FXML
@@ -95,6 +102,11 @@ public class HelloController implements Initializable {
     private ImageView greenDie;
     @FXML
     private ImageView redDie;
+    @FXML
+    public static Stage stage;
+
+
+
     private Token redToken = new Token(redDie,0,0);
     private Token greenToken = new Token(greenDie,0,0);
 
@@ -246,6 +258,8 @@ public class HelloController implements Initializable {
 
     }
 
+
+
     void playTimer(int option){
         downArrow.setVisible(true);
         Timeline timeline = new Timeline(
@@ -261,6 +275,17 @@ public class HelloController implements Initializable {
         }
         //downArrow.setVisible(false);
     }
+
+    public void switchToScene1() throws IOException {
+        //Parent root= FXMLLoader.load(getClass().getResource("win_scene.fxml"));
+        //stage = (Stage)((Node)getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("win_scene.fxml"));
+        Scene scene = new Scene(root);
+        //scene=new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     int i=0;
     public void move() throws InterruptedException {
         //Token.move(redToken,greenToken,number,redDie,greenDie);
@@ -270,9 +295,9 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        redToken.setX_coordinate(61);
+//        redToken.setX_coordinate(99);
 //        redToken.setStatus(true);
-        progress.setStyle("-fx-background-color: darkslateblue;-fx-accent: rgba(0, 138, 230, 0.85);");
+        //progress.setStyle("-fx-background-color: darkslateblue;-fx-accent: rgba(0, 138, 230, 0.85);");
         Snake s1 = new Snake();
         s1.setF_pos(6);
         s1.setPos(16);
