@@ -5,10 +5,10 @@ import javafx.scene.shape.Polyline;
 import java.util.ArrayList;
 
 public class Snake extends Elements{
-    private int translate_X;
-    private int translate_y;
-    private int pos;
-    private int f_pos;
+//    private int translate_X;
+//    private int translate_y;
+//    private int pos;
+//    private int f_pos;
     ArrayList<Polyline> lines = new ArrayList<>();
 
     public ArrayList<Polyline> getLines() {
@@ -19,35 +19,35 @@ public class Snake extends Elements{
         lines.add(l);
     }
 
-    public int getF_pos() {
-        return f_pos;
-    }
-
-    public void setF_pos(int f_pos) {
-        this.f_pos = f_pos;
-    }
-
-    public int getPos() {
-        return pos;
-    }
-
-    public void setPos(int pos) {
-        this.pos = pos;
-    }
-
-    public int getTranslate_X() {
-        return translate_X;
-    }
-
-    public void setTranslate_X(int translate_X) {
-        this.translate_X = translate_X;
-    }
-
-    public int getTranslate_y() {
-        return translate_y;
-    }
-
-    public void setTranslate_y(int translate_y) {
-        this.translate_y = translate_y;
-    }
+//    public int getF_pos() {
+//        return f_pos;
+//    }
+//
+//    public void setF_pos(int f_pos) {
+//        this.f_pos = f_pos;
+//    }
+//
+//    public int getPos() {
+//        return pos;
+//    }
+//
+//    public void setPos(int pos) {
+//        this.pos = pos;
+//    }
+//
+//    public int getTranslate_X() {
+//        return translate_X;
+//    }
+//
+//    public void setTranslate_X(int translate_X) {
+//        this.translate_X = translate_X;
+//    }
+//
+//    public int getTranslate_y() {
+//        return translate_y;
+//    }
+//
+//    public void setTranslate_y(int translate_y) {
+//        this.translate_y = translate_y;
+//    }
 }
