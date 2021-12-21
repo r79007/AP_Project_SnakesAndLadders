@@ -88,7 +88,7 @@ public class Token {
     }
     static int i1=0;
     static int i2=0;
-    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage, Label win_text, Label lose_text,Label text3) throws InterruptedException{
+    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage, Label win_text, Label lose_text,Label text3,Player P1,Player P2) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false && number==1){
             t1.setStatus(true);
             //n=0;
@@ -264,7 +264,7 @@ public class Token {
             int num = number;
             System.out.println("Red");
             if(num<=100-t1.getX_coordinate()) {
-                Loop<Token> thread = new Loop<>(t1, num, red,mImage,wImage,win_text,lose_text,text3);
+                Loop<Token> thread = new Loop<>(t1, num, red,mImage,wImage,win_text,lose_text,text3,P1,P2);
                 thread.start();
             }
 
@@ -274,7 +274,7 @@ public class Token {
             int num = number;
             System.out.println("green");
             if(num<=100-t2.getX_coordinate()) {
-                Loop<Token> thread=new Loop<>(t2,num,green,mImage,wImage,win_text,lose_text,text3);
+                Loop<Token> thread=new Loop<>(t2,num,green,mImage,wImage,win_text,lose_text,text3,P1,P2);
                 thread.start();
             }
         }
@@ -297,8 +297,10 @@ public class Token {
         Label win_text;
         Label lose_text;
         Label text3;
+        Player P1;
+        Player P2;
 
-        public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage,Label win_text,Label lose_text,Label text3) {
+        public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage,Label win_text,Label lose_text,Label text3,Player P1,Player P2) {
             this.token = token;
             this.num = num;
             this.imgv = imgv;
@@ -307,6 +309,8 @@ public class Token {
             this.win_text= win_text;
             this.lose_text = lose_text;
             this.text3 = text3;
+            this.P1 = P1;
+            this.P2 = P2;
         }
 
         @Override
@@ -400,7 +404,7 @@ public class Token {
                     break;
                 }
             }
-            if(token.getX_coordinate()==100) {
+            if(P1.getToken().getX_coordinate()==100) {
                 Timeline tm=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
                     Platform.runLater(new Runnable() {
                         @Override
@@ -408,20 +412,59 @@ public class Token {
 //                            BoxBlur bb = new BoxBlur();
 //                            mImage.setEffect(bb);
                             HelloController.playAudio("/winningA1.mp3");
-                            if((token.getP()).equals("Player1")){
+//                            if((token.getP()).equals("Player1")){
                                 text3.setText("Player1 WINS");
                                 win_text.setText("Player1");
                                 win_text.setAlignment(Pos.CENTER);
                                 lose_text.setText("Player2");
                                 lose_text.setAlignment(Pos.CENTER);
-                            }
-                            else{
+//                            }
+//                            else{
+//                                text3.setText("Player2 WINS");
+//                                win_text.setText("Player2");
+//                                win_text.setAlignment(Pos.CENTER);
+//                                lose_text.setText("Player1");
+//                                lose_text.setAlignment(Pos.CENTER);
+//                            }
+                            wImage.setVisible(true);
+                            //if (token.getX_coordinate() == 100) {
+                            //SceneController scnt=new SceneController();
+                            //HelloController hct = new HelloController();
+//                            try {
+//                                HelloController.switchToScene1();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            //}
+                        }
+                    });
+                }));
+
+                tm.play();
+
+            }
+            else if(P2.getToken().getX_coordinate()==100) {
+                Timeline tm=new Timeline(new KeyFrame(Duration.millis(1000),event -> {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+//                            BoxBlur bb = new BoxBlur();
+//                            mImage.setEffect(bb);
+                            HelloController.playAudio("/winningA1.mp3");
+//                            if((token.getP()).equals("Player1")){
+//                                text3.setText("Player1 WINS");
+//                                win_text.setText("Player1");
+//                                win_text.setAlignment(Pos.CENTER);
+//                                lose_text.setText("Player2");
+//                                lose_text.setAlignment(Pos.CENTER);
+//                            }
+//                            else{
                                 text3.setText("Player2 WINS");
                                 win_text.setText("Player2");
                                 win_text.setAlignment(Pos.CENTER);
                                 lose_text.setText("Player1");
                                 lose_text.setAlignment(Pos.CENTER);
-                            }
+//                            }
                             wImage.setVisible(true);
                             //if (token.getX_coordinate() == 100) {
                             //SceneController scnt=new SceneController();

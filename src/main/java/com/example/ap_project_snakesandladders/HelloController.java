@@ -130,9 +130,10 @@ public class HelloController implements Initializable {
     @FXML
     public static Stage stage;
 
-
     private Token redToken = new Token(redDie,0,0,"Player1");
     private Token greenToken = new Token(greenDie,0,0,"Player2");
+    private Player P1 = new Player("Player1",redToken);
+    private Player P2 = new Player("Player2",greenToken);
 
     @FXML
     private Label welcomeText;
@@ -265,15 +266,15 @@ public class HelloController implements Initializable {
                         }
                         timeline1.play();
                         downArrow.setVisible(true);
-                        if(bottomBarLeft.isVisible()==false || (progress.getProgress() == 0 && bottomBarLeft.isVisible()==false)){
+                        if(bottomBarLeft.isVisible()==false){
                             System.out.println("In first");
-                            Token.setN(0);
+                            //Token.setN(0);
                             bottomBarRight.setVisible(false);
                             bottomBarLeft.setVisible(true);
                         }
-                        else if(bottomBarRight.isVisible() == false || (progress.getProgress() == 0 && bottomBarRight.isVisible() == false)){
+                        else{
                             System.out.println("In second");
-                            Token.setN(1);
+                            //Token.setN(1);
                             bottomBarLeft.setVisible(false);
                             bottomBarRight.setVisible(true);
                         }
@@ -358,7 +359,7 @@ public class HelloController implements Initializable {
     boolean start = false;
     int i=0;
     public void move() throws InterruptedException {
-        Token.move(redToken,greenToken,number,redDie,greenDie,win_scene_2,main_screen,win_text,lose_text,text3);
+        Token.move(redToken,greenToken,number,redDie,greenDie,win_scene_2,main_screen,win_text,lose_text,text3,P1,P2);
 //        if(number == 1 && start == false){
 //            start = true;
 //            Token.move(redToken,greenToken,number,redDie,greenDie);
@@ -514,17 +515,5 @@ public class HelloController implements Initializable {
         lads.add(l9);
         playTimer(1);
 
-        if(bottomBarLeft.isVisible()==false || (progress.getProgress() == 0 && bottomBarLeft.isVisible()==false)){
-            System.out.println("In first");
-            Token.setN(0);
-            bottomBarRight.setVisible(false);
-            bottomBarLeft.setVisible(true);
-        }
-        else if(bottomBarRight.isVisible() == false || (progress.getProgress() == 0 && bottomBarRight.isVisible() == false)){
-            System.out.println("In second");
-            Token.setN(1);
-            bottomBarLeft.setVisible(false);
-            bottomBarRight.setVisible(true);
-        }
     }
 }

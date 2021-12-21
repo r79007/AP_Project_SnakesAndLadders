@@ -4,7 +4,7 @@ import javafx.scene.shape.Polyline;
 
 import java.util.ArrayList;
 
-public class Snake {
+public class Snake extends Elements{
     private int translate_X;
     private int translate_y;
     private int pos;

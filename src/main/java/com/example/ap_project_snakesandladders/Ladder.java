@@ -2,7 +2,7 @@ package com.example.ap_project_snakesandladders;
 
 import javafx.scene.shape.Line;
 
-public class Ladder {
+public class Ladder extends Elements{
     private int translate_X;
     private int translate_y;
     private int pos;
