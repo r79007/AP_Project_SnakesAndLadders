@@ -34,17 +34,26 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class HelloController implements Initializable {
 
     @FXML
     private Button but3;
 
-//    @FXML
-//    private Text win_text;
-//
-//    @FXML
-//    private Text lose_text;
+    @FXML
+    private Label win_text;
+
+    @FXML
+    private Label lose_text;
+
+    @FXML
+    private Label text3;
+
+    @FXML
+    private static MediaPlayer mediaPlayer;
+
 
     private static ArrayList<Ladder> lads = new ArrayList<>();
     private static ArrayList<Snake> snakes = new ArrayList<>();
@@ -122,9 +131,8 @@ public class HelloController implements Initializable {
     public static Stage stage;
 
 
-
-    private Token redToken = new Token(redDie,0,0);
-    private Token greenToken = new Token(greenDie,0,0);
+    private Token redToken = new Token(redDie,0,0,"Player1");
+    private Token greenToken = new Token(greenDie,0,0,"Player2");
 
     @FXML
     private Label welcomeText;
@@ -182,10 +190,10 @@ public class HelloController implements Initializable {
         downArrow.setVisible(false);
         //playTimer(-1);
         Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
+                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 1)),
                 new KeyFrame(Duration.seconds(15), e-> {
 
-                }, new KeyValue(progress.progressProperty(), 1))
+                }, new KeyValue(progress.progressProperty(), 0))
         );
         //timeline.stop();
         Thread th1=new Thread(new Runnable() {
@@ -195,6 +203,7 @@ public class HelloController implements Initializable {
                 i2++;
                 Platform.runLater(new Runnable() {
                     @Override public void run() {
+                        playAudio("/diceRollA.mp3");
                         //timeline1.stop();
                         rollingDice.setVisible(true);
                         dice.setVisible(false);
@@ -256,10 +265,15 @@ public class HelloController implements Initializable {
                         }
                         timeline1.play();
                         downArrow.setVisible(true);
-                        if(bottomBarLeft.isVisible()==false){
+                        if(bottomBarLeft.isVisible()==false || (progress.getProgress() == 0 && bottomBarLeft.isVisible()==false)){
+                            System.out.println("In first");
+                            Token.setN(0);
                             bottomBarRight.setVisible(false);
                             bottomBarLeft.setVisible(true);
-                        }else{
+                        }
+                        else if(bottomBarRight.isVisible() == false || (progress.getProgress() == 0 && bottomBarRight.isVisible() == false)){
+                            System.out.println("In second");
+                            Token.setN(1);
                             bottomBarLeft.setVisible(false);
                             bottomBarRight.setVisible(true);
                         }
@@ -280,10 +294,10 @@ public class HelloController implements Initializable {
     void playTimer(int option){
         downArrow.setVisible(true);
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 0)),
+                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 1)),
                 new KeyFrame(Duration.seconds(15), e-> {
 
-                }, new KeyValue(progress.progressProperty(), 1))
+                }, new KeyValue(progress.progressProperty(), 0))
         );
         if(option>0) {
             timeline.play();
@@ -293,6 +307,19 @@ public class HelloController implements Initializable {
         //downArrow.setVisible(false);
     }
 
+    public static void playAudio(String name) {
+//        String path = getClass().getResource(name).getPath();
+//        Media media = new Media(new File(path).toURI().toString());
+//        mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//        mediaPlayer.play();
+        System.out.println("In audio");
+        URL resource = HelloController.class.getResource(name);
+        mediaPlayer = new MediaPlayer(new Media(resource.toString()));
+        //}
+        //mediaPlayer.setCycleCount(1);
+        mediaPlayer.play();
+    }
 
     static void switchToScene1() throws IOException {
         //Parent root= FXMLLoader.load(getClass().getResource("win_scene.fxml"));
@@ -331,7 +358,7 @@ public class HelloController implements Initializable {
     boolean start = false;
     int i=0;
     public void move() throws InterruptedException {
-        Token.move(redToken,greenToken,number,redDie,greenDie,win_scene_2,main_screen);
+        Token.move(redToken,greenToken,number,redDie,greenDie,win_scene_2,main_screen,win_text,lose_text,text3);
 //        if(number == 1 && start == false){
 //            start = true;
 //            Token.move(redToken,greenToken,number,redDie,greenDie);
@@ -486,5 +513,18 @@ public class HelloController implements Initializable {
         l9.setPath(path80_100);
         lads.add(l9);
         playTimer(1);
+
+        if(bottomBarLeft.isVisible()==false || (progress.getProgress() == 0 && bottomBarLeft.isVisible()==false)){
+            System.out.println("In first");
+            Token.setN(0);
+            bottomBarRight.setVisible(false);
+            bottomBarLeft.setVisible(true);
+        }
+        else if(bottomBarRight.isVisible() == false || (progress.getProgress() == 0 && bottomBarRight.isVisible() == false)){
+            System.out.println("In second");
+            Token.setN(1);
+            bottomBarLeft.setVisible(false);
+            bottomBarRight.setVisible(true);
+        }
     }
 }

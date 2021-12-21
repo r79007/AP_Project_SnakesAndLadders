@@ -7,13 +7,17 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -24,6 +28,11 @@ public class Token {
     private ImageView token;
     private boolean status = false;
     private static int n = 1;
+
+    public static void setN(int n) {
+        Token.n = n;
+    }
+
     public boolean getStatus() {
         return status;
     }
@@ -34,6 +43,16 @@ public class Token {
 
     private int x_coordinate;
     private int y_coordinate;
+
+    private String p;
+
+    public String getP() {
+        return p;
+    }
+
+//    public void setP(Player p) {
+//        this.p = p;
+//    }
 
     public ImageView getToken() {
         return this.token;
@@ -61,14 +80,15 @@ public class Token {
 
 
 
-    public Token(ImageView token, int x_coordinate, int y_coordinate) {
+    public Token(ImageView token, int x_coordinate, int y_coordinate,String p) {
         this.token = token;
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
+        this.p = p;
     }
     static int i1=0;
     static int i2=0;
-    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage) throws InterruptedException{
+    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage, Label win_text, Label lose_text,Label text3) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false && number==1){
             t1.setStatus(true);
             //n=0;
@@ -90,6 +110,7 @@ public class Token {
                         //System.out.println(t1.x_coordinate);
 
                         if(i.getPos() == t1.getX_coordinate()){
+                            HelloController.playAudio("/ladder3.mp3");
                             //System.out.println(i.getPos());
                             t1.setX_coordinate(i.getF_pos());
 
@@ -107,7 +128,7 @@ public class Token {
                     }
                 }
             }));
-            timeline.setCycleCount(2);
+            timeline.setCycleCount(1);
             timeline.play();
 //            Thread th1=new Thread(new Runnable() {
 //                @Override
@@ -215,6 +236,7 @@ public class Token {
                         //System.out.println(t2.x_coordinate);
 
                         if(i.getPos() == t2.getX_coordinate()){
+                            HelloController.playAudio("/ladder3.mp3");
                             //System.out.println(i.getPos());
                             t2.setX_coordinate(i.getF_pos());
 
@@ -232,7 +254,7 @@ public class Token {
                     }
                 }
             }));
-            timeline.setCycleCount(2);
+            timeline.setCycleCount(1);
             timeline.play();
 
 
@@ -242,7 +264,7 @@ public class Token {
             int num = number;
             System.out.println("Red");
             if(num<=100-t1.getX_coordinate()) {
-                Loop<Token> thread = new Loop<>(t1, num, red,mImage,wImage);
+                Loop<Token> thread = new Loop<>(t1, num, red,mImage,wImage,win_text,lose_text,text3);
                 thread.start();
             }
 
@@ -252,7 +274,7 @@ public class Token {
             int num = number;
             System.out.println("green");
             if(num<=100-t2.getX_coordinate()) {
-                Loop<Token> thread=new Loop<>(t2,num,green,mImage,wImage);
+                Loop<Token> thread=new Loop<>(t2,num,green,mImage,wImage,win_text,lose_text,text3);
                 thread.start();
             }
         }
@@ -272,13 +294,19 @@ public class Token {
         ImageView imgv;
         AnchorPane mImage;
         Group wImage;
+        Label win_text;
+        Label lose_text;
+        Label text3;
 
-        public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage) {
+        public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage,Label win_text,Label lose_text,Label text3) {
             this.token = token;
             this.num = num;
             this.imgv = imgv;
             this.mImage = mImage;
             this.wImage = wImage;
+            this.win_text= win_text;
+            this.lose_text = lose_text;
+            this.text3 = text3;
         }
 
         @Override
@@ -328,6 +356,7 @@ public class Token {
             for(Snake i : HelloController.getSnakes()){
                 System.out.println(i.getPos());
                 if(i.getPos() == this.token.getX_coordinate()){
+                    HelloController.playAudio("/snake2.mp3");
                     System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
                     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event ->{
@@ -355,6 +384,7 @@ public class Token {
                 System.out.println(this.token.getX_coordinate());
 
                 if (i.getPos() == this.token.getX_coordinate()) {
+                    HelloController.playAudio("/ladder3.mp3");
                     System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
 
@@ -377,6 +407,21 @@ public class Token {
                         public void run() {
 //                            BoxBlur bb = new BoxBlur();
 //                            mImage.setEffect(bb);
+                            HelloController.playAudio("/winningA1.mp3");
+                            if((token.getP()).equals("Player1")){
+                                text3.setText("Player1 WINS");
+                                win_text.setText("Player1");
+                                win_text.setAlignment(Pos.CENTER);
+                                lose_text.setText("Player2");
+                                lose_text.setAlignment(Pos.CENTER);
+                            }
+                            else{
+                                text3.setText("Player2 WINS");
+                                win_text.setText("Player2");
+                                win_text.setAlignment(Pos.CENTER);
+                                lose_text.setText("Player1");
+                                lose_text.setAlignment(Pos.CENTER);
+                            }
                             wImage.setVisible(true);
                             //if (token.getX_coordinate() == 100) {
                             //SceneController scnt=new SceneController();

@@ -10,6 +10,7 @@ module com.example.ap_project_snakesandladders {
             requires org.kordamp.bootstrapfx.core;
             requires eu.hansolo.tilesfx;
     requires java.desktop;
+    requires javafx.media;
 
     opens com.example.ap_project_snakesandladders to javafx.fxml;
     exports com.example.ap_project_snakesandladders;
