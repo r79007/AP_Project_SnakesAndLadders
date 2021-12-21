@@ -7,8 +7,11 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
@@ -65,10 +68,10 @@ public class Token {
     }
     static int i1=0;
     static int i2=0;
-    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green) throws InterruptedException{
+    public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false){
             t1.setStatus(true);
-            n=0;
+            //n=0;
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
                 if(i1==0){
@@ -192,7 +195,7 @@ public class Token {
 //            translate.play();
 
             t2.setStatus(true);
-            n=1;
+            //n=1;
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
                 if(i2==0){
@@ -231,24 +234,31 @@ public class Token {
 
 
         }
-        else if(n == 1) {
-            n = 0;
+        else if(n == 1 && t1.getStatus() == true) {
+            //n = 0;
             int num = number;
             System.out.println("Red");
             if(num<=100-t1.getX_coordinate()) {
-                Loop<Token> thread = new Loop<>(t1, num, red);
+                Loop<Token> thread = new Loop<>(t1, num, red,mImage,wImage);
                 thread.start();
             }
 
         }
-        else if(n == 0){
-            n=1;
+        else if(n == 0 && t2.getStatus() == true){
+           // n=1;
             int num = number;
             System.out.println("green");
             if(num<=100-t2.getX_coordinate()) {
-                Loop<Token> thread=new Loop<>(t2,num,green);
+                Loop<Token> thread=new Loop<>(t2,num,green,mImage,wImage);
                 thread.start();
             }
+        }
+
+        if(n==1){
+            n=0;
+        }
+        else{
+            n=1;
         }
     }
 
@@ -257,11 +267,15 @@ public class Token {
         T token;
         int num;
         ImageView imgv;
+        AnchorPane mImage;
+        Group wImage;
 
-        public Loop(T token, int num, ImageView imgv) {
+        public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage) {
             this.token = token;
             this.num = num;
             this.imgv = imgv;
+            this.mImage = mImage;
+            this.wImage = wImage;
         }
 
         @Override
@@ -358,15 +372,18 @@ public class Token {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
+//                            BoxBlur bb = new BoxBlur();
+//                            mImage.setEffect(bb);
+                            wImage.setVisible(true);
                             //if (token.getX_coordinate() == 100) {
                             //SceneController scnt=new SceneController();
-                            HelloController hct = new HelloController();
-                            try {
-                                hct.switchToScene1();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            //}
+                            //HelloController hct = new HelloController();
+//                            try {
+//                                HelloController.switchToScene1();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            //}
                         }
                     });
                 }));

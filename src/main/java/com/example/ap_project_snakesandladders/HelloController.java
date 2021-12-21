@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,6 +37,15 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
 
+    @FXML
+    private Button but3;
+
+//    @FXML
+//    private Text win_text;
+//
+//    @FXML
+//    private Text lose_text;
+
     private static ArrayList<Ladder> lads = new ArrayList<>();
     private static ArrayList<Snake> snakes = new ArrayList<>();
 
@@ -44,6 +56,10 @@ public class HelloController implements Initializable {
     public static ArrayList<Ladder> getLads() {
         return lads;
     }
+    @FXML
+    private AnchorPane main_screen;
+    @FXML
+    private Group win_scene_2;
     @FXML
     private Polyline line87_24_1;
     @FXML
@@ -276,21 +292,53 @@ public class HelloController implements Initializable {
         //downArrow.setVisible(false);
     }
 
-    public void switchToScene1() throws IOException {
+
+    static void switchToScene1() throws IOException {
         //Parent root= FXMLLoader.load(getClass().getResource("win_scene.fxml"));
         //stage = (Stage)((Node)getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("win_scene.fxml"));
-        Scene scene = new Scene(root);
-        //scene=new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//        if(main_screen != null){ main_screen.getPrefHeight()
+//            TranslateTransition translate = new TranslateTransition(Duration.millis(1000),win_scene);
+//            translate.setToY((651+200)/2);
+//            translate.play();
+//        }
+            //main_screen.setOpacity(0.5);
+            //win_scene_2.setVisible(true);
 
+//        TranslateTransition translate = new TranslateTransition(Duration.millis(1000),win_scene);
+//        translate.setToY((651+ ((Node)win_scene).getBoundsInLocal().getWidth())/2);
+//        translate.play();
+
+//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("win_scene.fxml"));
+//        Scene scene = new Scene(root);
+
+//        win_text.setText("Player 1");
+//        lose_text.setText("Player 2");
+        //scene=new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+
+//
+//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("win_scene.fxml"));
+//        Scene scene = new Scene(root);
+//        //scene=new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+    }
+//    boolean redstart = false;
+//    boolean greenstart = false;
+
+    boolean start = false;
     int i=0;
     public void move() throws InterruptedException {
-        //Token.move(redToken,greenToken,number,redDie,greenDie);
-        Token.move(redToken,greenToken,number,redDie,greenDie);
-        //Token.move(redToken,greenToken,87-number,redDie,greenDie);
+        Token.move(redToken,greenToken,number,redDie,greenDie,win_scene_2,main_screen);
+//        if(number == 1 && start == false){
+//            start = true;
+//            Token.move(redToken,greenToken,number,redDie,greenDie);
+//        }
+//        else{
+//
+//        }
+//        Token.move(redToken,greenToken,87-number,redDie,greenDie);
     }
 
     @Override

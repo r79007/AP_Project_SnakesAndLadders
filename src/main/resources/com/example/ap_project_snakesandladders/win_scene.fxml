@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
    <children>
-      <ImageView fitHeight="408.0" fitWidth="612.0" layoutX="-6.0">
+      <ImageView fx:id="but3" fitHeight="408.0" fitWidth="612.0" layoutX="-6.0">
          <image>
             <Image url="@../../../Purple-Noise-HD-Wallpaper.jpg" />
          </image>
@@ -37,5 +37,6 @@
       <Button fx:id="menu_button" layoutX="268.0" layoutY="355.0" mnemonicParsing="false" opacity="0.0" prefHeight="28.0" prefWidth="87.0" text="Button" />
       <Rectangle fx:id="downArrow1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="81.0" layoutX="139.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="76.0" />
       <ProgressBar fx:id="progress1" layoutX="325.0" layoutY="221.0" prefWidth="200.0" progress="0.0" visible="false" />
+      <Button fx:id="but3" layoutX="64.0" layoutY="297.0" mnemonicParsing="false" text="But3_1" />
    </children>
 </AnchorPane>
