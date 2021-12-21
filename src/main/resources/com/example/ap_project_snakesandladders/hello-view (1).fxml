@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polyline?>
 
-<AnchorPane fx:id="main_screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap_project_snakesandladders.HelloController">
    <children>
       <ImageView fitHeight="659.0" fitWidth="941.0" layoutY="-8.0" onMouseMoved="#findloc">
          <image>
@@ -43,7 +43,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fx:id="redDie" fitHeight="66.0" fitWidth="56.0" layoutX="146.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="redDie" fitHeight="66.0" fitWidth="56.0" layoutX="269.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../token_red.png" />
          </image>
@@ -128,7 +128,7 @@
          <effect>
             <Reflection />
          </effect></Label>
-      <Group fx:id="win_scene_2" layoutX="261.0" layoutY="239.0" visible="false">
+      <Group fx:id="win_scene" layoutX="261.0" layoutY="239.0" visible="false">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>

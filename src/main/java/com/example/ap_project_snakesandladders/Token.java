@@ -69,21 +69,23 @@ public class Token {
     static int i1=0;
     static int i2=0;
     public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage) throws InterruptedException{
-        if(n == 1 && t1.getStatus() == false){
+        if(n == 1 && t1.getStatus() == false && number==1){
             t1.setStatus(true);
             //n=0;
+            if(i1==0) {
+                TranslateTransition translate = new TranslateTransition();
+                translate.setNode(red);
+                translate.setDuration(Duration.millis(1000));
+                translate.setByX((49) * (number - 1) + 26 + 49);
+                translate.setByY(13);
+                t1.setX_coordinate(number);
+                translate.play();
+                i1++;
+            }
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
-                if(i1==0){
-                    TranslateTransition translate = new TranslateTransition();
-                    translate.setNode(red);
-                    translate.setDuration(Duration.millis(1000));
-                    translate.setByX((49) * (number - 1) + 26 + 49);
-                    translate.setByY(13);
-                    t1.setX_coordinate(number);
-                    translate.play();
-                    i1++;
-                }else{
+
+                if(i1==1){
                     for(Ladder i : HelloController.getLads()){
                         //System.out.println(t1.x_coordinate);
 
@@ -182,7 +184,7 @@ public class Token {
 //                }
 //            }
         }
-        else if(n == 0 && t2.getStatus() == false){
+        else if(n == 0 && t2.getStatus() == false && number==1){
 //            t2.setStatus(true);
 //            n=1;
 //            TranslateTransition translate = new TranslateTransition();
@@ -196,18 +198,19 @@ public class Token {
 
             t2.setStatus(true);
             //n=1;
+            if(i2==0){
+                TranslateTransition translate = new TranslateTransition();
+                translate.setNode(green);
+                translate.setDuration(Duration.millis(1000));
+                translate.setByX((49) * (number - 1) + 26 + 49);
+                translate.setByY(-13);
+                t2.setX_coordinate(number);
+                translate.play();
+                i2++;
+            }
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event -> {
-                if(i2==0){
-                    TranslateTransition translate = new TranslateTransition();
-                    translate.setNode(green);
-                    translate.setDuration(Duration.millis(1000));
-                    translate.setByX((49) * (number - 1) + 26 + 49);
-                    translate.setByY(-13);
-                    t2.setX_coordinate(number);
-                    translate.play();
-                    i2++;
-                }else{
+                if(i2==1){
                     for(Ladder i : HelloController.getLads()){
                         //System.out.println(t2.x_coordinate);
 

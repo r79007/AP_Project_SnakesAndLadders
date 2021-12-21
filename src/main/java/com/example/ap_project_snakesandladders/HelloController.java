@@ -245,14 +245,15 @@ public class HelloController implements Initializable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                try {
-
-                    move();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                //move() moved from here
                 Platform.runLater(new Runnable() {
                     @Override public void run() {
+                        try {
+
+                            move();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         timeline1.play();
                         downArrow.setVisible(true);
                         if(bottomBarLeft.isVisible()==false){
