@@ -96,6 +96,7 @@ public class Token {
                 TranslateTransition translate = new TranslateTransition();
                 translate.setNode(red);
                 translate.setDuration(Duration.millis(1000));
+                HelloController.setDelay(2000);
                 translate.setByX((49) * (number - 1) + 26 + 49);
                 translate.setByY(13);
                 t1.setX_coordinate(number);
@@ -111,6 +112,7 @@ public class Token {
 
                         if(i.getPos() == t1.getX_coordinate()){
                             HelloController.playAudio("/ladder3.mp3");
+
                             //System.out.println(i.getPos());
                             t1.setX_coordinate(i.getF_pos());
 
@@ -122,6 +124,7 @@ public class Token {
                             pt.setNode(red);
                             pt.setPath(i.getPath());
                             pt.setDuration(Duration.millis(1000));
+
                             pt.play();
                             break;
                         }
@@ -223,6 +226,7 @@ public class Token {
                 TranslateTransition translate = new TranslateTransition();
                 translate.setNode(green);
                 translate.setDuration(Duration.millis(1000));
+                HelloController.setDelay(2000);
                 translate.setByX((49) * (number - 1) + 26 + 49);
                 translate.setByY(-13);
                 t2.setX_coordinate(number);
@@ -236,6 +240,7 @@ public class Token {
                         //System.out.println(t2.x_coordinate);
 
                         if(i.getPos() == t2.getX_coordinate()){
+
                             HelloController.playAudio("/ladder3.mp3");
                             //System.out.println(i.getPos());
                             t2.setX_coordinate(i.getF_pos());
@@ -248,6 +253,7 @@ public class Token {
                             pt.setNode(green);
                             pt.setPath(i.getPath());
                             pt.setDuration(Duration.millis(1000));
+
                             pt.play();
                             break;
                         }
@@ -361,6 +367,13 @@ public class Token {
                 System.out.println(i.getPos());
                 if(i.getPos() == this.token.getX_coordinate()){
                     HelloController.playAudio("/snake2.mp3");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            HelloController.setDelay(i.getLines().size()*1000+1000);
+                        }});
+                    System.out.println("Snake delay set");
+                    //HelloController.setDelay(i.getLines().size()*1000+1000);
                     System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
                     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000),event ->{
@@ -377,6 +390,7 @@ public class Token {
                         k++;
                     }));
                     timeline.setCycleCount(i.getLines().size());
+
                     timeline.play();
                     k=0;
                     break;
@@ -389,7 +403,13 @@ public class Token {
 
                 if (i.getPos() == this.token.getX_coordinate()) {
                     HelloController.playAudio("/ladder3.mp3");
-                    System.out.println(i.getPos());
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            HelloController.setDelay(1000);
+                        }});
+                    System.out.println("Ladder delay set");
+                    //System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
 
                     imgv.setX(imgv.getLayoutX());
@@ -400,6 +420,7 @@ public class Token {
                     pt.setNode(imgv);
                     pt.setPath(i.getPath());
                     pt.setDuration(Duration.millis(1000));
+
                     pt.play();
                     break;
                 }
@@ -414,9 +435,9 @@ public class Token {
                             HelloController.playAudio("/winningA1.mp3");
 //                            if((token.getP()).equals("Player1")){
                                 text3.setText("Player1 WINS");
-                                win_text.setText("Player1");
+                                win_text.setText("Player 1");
                                 win_text.setAlignment(Pos.CENTER);
-                                lose_text.setText("Player2");
+                                lose_text.setText("Player 2");
                                 lose_text.setAlignment(Pos.CENTER);
 //                            }
 //                            else{

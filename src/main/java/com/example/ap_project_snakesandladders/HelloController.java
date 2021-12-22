@@ -128,7 +128,17 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView redDie;
     @FXML
-    public static Stage stage;
+    private static Stage stage;
+
+    private static int delay=-1;
+
+    public static int getDelay() {
+        return delay;
+    }
+
+    public static void setDelay(int delay) {
+        HelloController.delay = delay;
+    }
 
     private Token redToken = new Token(redDie,0,0,"Player1");
     private Token greenToken = new Token(greenDie,0,0,"Player2");
@@ -266,7 +276,15 @@ public class HelloController implements Initializable {
                             e.printStackTrace();
                         }
                         //timeline1.play();
-                    Timeline timeline9= new Timeline(new KeyFrame(Duration.millis(100*number),event1 -> {
+                        int dur;
+                        if(delay!=-1){
+                            dur=delay;
+                        }else{
+                            dur=100*number;
+                        }
+                        delay=-1;
+                        //System.out.println(dur);
+                    Timeline timeline9= new Timeline(new KeyFrame(Duration.millis(dur),event1 -> {
                         playTimer(1);
                         downArrow.setVisible(true);
                         if(bottomBarLeft.isVisible()==false){

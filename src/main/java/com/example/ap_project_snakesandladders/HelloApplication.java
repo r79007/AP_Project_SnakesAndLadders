@@ -1,18 +1,13 @@
 package com.example.ap_project_snakesandladders;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Tooltip;
-import javafx.scene.effect.Light;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
@@ -20,17 +15,17 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Snakes and Ladders");
         stage.setScene(scene);
         URL url = this.getClass().getResource("/style.css");
         if (url == null) {
-            System.out.println("Resource not found. Aborting.");
             System.exit(-1);
         }
         String css = url.toExternalForm();
         scene.getStylesheets().add(css);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon2.png")));
         stage.show();
-        HelloController.stage=stage;
+        //HelloController.stage=stage;
         System.out.println("hello\n");
         //Token red = new Token();
     }
