@@ -1,10 +1,7 @@
 package com.example.ap_project_snakesandladders;
 
 
-import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -331,7 +328,7 @@ public class Token {
                         th.setDir(1);
                         th.start();
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -342,7 +339,7 @@ public class Token {
                         th.setDir(-1);
                         th.start();
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -354,7 +351,7 @@ public class Token {
                     th.setDir(1);
                     th.start();
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(300);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -527,17 +524,52 @@ public class Token {
         @Override
         public void run() {
             TranslateTransition translate = new TranslateTransition();
+            TranslateTransition translateyup = new TranslateTransition();
+            TranslateTransition translateydown = new TranslateTransition();
+            SequentialTransition s;
+//            ParallelTransition p = new ParallelTransition();
             if(coordinate==1){
                 if(this.dir>0) {
+                    translateyup.setNode(imgv);
+                    translateyup.setDuration(Duration.millis(50));
+                    translateyup.setByY(-10);
+//                    translatey.setAutoReverse(true);
+//                    translatey.setCycleCount(1);
+
+                    translateydown.setNode(imgv);
+                    translateydown.setDuration(Duration.millis(50));
+                    translateydown.setByY(10);
+//                    translatey.setAutoReverse(true);
+//                    translatey.setCycleCount(1);
+                    s = new SequentialTransition(translateyup, translateydown);
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
                     translate.setByX(49);
+
+//                    ParallelTransition p = new ParallelTransition(translate,translatey);
+//                    p.play();
                     translate.play();
+                    s.play();
+
+//                    translate.setByX(49/2);
+//                    translate.setByY(4);
+//                    translate.play();
                 }else{
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
                     translate.setByX(-49);
+//                    translate.play();
+                    translateyup.setNode(imgv);
+                    translateyup.setDuration(Duration.millis(50));
+                    translateyup.setByY(-10);
+
+                    translateydown.setNode(imgv);
+                    translateydown.setDuration(Duration.millis(50));
+                    translateydown.setByY(10);
+                    s = new SequentialTransition(translateyup, translateydown);
                     translate.play();
+                    s.play();
+
                 }
                 token.setX_coordinate(token.getX_coordinate() + 1);
             }else{
