@@ -104,12 +104,12 @@ public class HelloController implements Initializable {
     private Polyline line98_78_1;
 
     @FXML
-    public Line path1_38;
+    private Line path1_38;
     //HelloApplication.lads.get(0)
     @FXML
-    public Line path4_14;
+    private Line path4_14;
     @FXML
-    public Line path9_31;
+    private Line path9_31;
     @FXML
     private Line path21_42;
     @FXML
@@ -161,8 +161,8 @@ public class HelloController implements Initializable {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
-    public double desx;
-    public double desy;
+    private double desx;
+    private double desy;
 
     @FXML
     private ImageView rollingDice;

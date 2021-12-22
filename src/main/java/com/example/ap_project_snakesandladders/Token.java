@@ -86,8 +86,8 @@ public class Token {
         this.y_coordinate = y_coordinate;
         this.p = p;
     }
-    static int i1=0;
-    static int i2=0;
+    private static int i1=0;
+    private static int i2=0;
     public static void move(Token t1, Token t2, int number, ImageView red, ImageView green, Group wImage, AnchorPane mImage, Label win_text, Label lose_text,Label text3,Player P1,Player P2) throws InterruptedException{
         if(n == 1 && t1.getStatus() == false && number==1){
             t1.setStatus(true);
@@ -293,18 +293,18 @@ public class Token {
         }
     }
 
-    static int k=0;
+    private static int k=0;
     static class Loop<T extends Token> extends Thread {
-        T token;
-        int num;
-        ImageView imgv;
-        AnchorPane mImage;
-        Group wImage;
-        Label win_text;
-        Label lose_text;
-        Label text3;
-        Player P1;
-        Player P2;
+        private T token;
+        private int num;
+        private ImageView imgv;
+        private AnchorPane mImage;
+        private Group wImage;
+        private Label win_text;
+        private Label lose_text;
+        private Label text3;
+        private Player P1;
+        private Player P2;
 
         public Loop(T token, int num, ImageView imgv,AnchorPane mImage,Group wImage,Label win_text,Label lose_text,Label text3,Player P1,Player P2) {
             this.token = token;
@@ -366,7 +366,7 @@ public class Token {
             for(Snake i : HelloController.getSnakes()){
                 System.out.println(i.getPos());
                 if(i.getPos() == this.token.getX_coordinate()){
-//                    HelloController.playAudio("/snake2.mp3");
+                    HelloController.playAudio("/snake2.mp3");
 //                    Platform.runLater(new Runnable() {
 //                        @Override
 //                        public void run() {
