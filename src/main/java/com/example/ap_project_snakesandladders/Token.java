@@ -366,13 +366,13 @@ public class Token {
             for(Snake i : HelloController.getSnakes()){
                 System.out.println(i.getPos());
                 if(i.getPos() == this.token.getX_coordinate()){
-                    HelloController.playAudio("/snake2.mp3");
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            HelloController.setDelay(i.getLines().size()*1000+1000);
-                        }});
-                    System.out.println("Snake delay set");
+//                    HelloController.playAudio("/snake2.mp3");
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            HelloController.setDelay(i.getLines().size()*1000+1000);
+//                        }});
+                    //System.out.println("Snake delay set");
                     //HelloController.setDelay(i.getLines().size()*1000+1000);
                     System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
@@ -403,12 +403,12 @@ public class Token {
 
                 if (i.getPos() == this.token.getX_coordinate()) {
                     HelloController.playAudio("/ladder3.mp3");
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            HelloController.setDelay(1000);
-                        }});
-                    System.out.println("Ladder delay set");
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            HelloController.setDelay(1000);
+//                        }});
+                    //System.out.println("Ladder delay set");
                     //System.out.println(i.getPos());
                     this.token.setX_coordinate(i.getF_pos());
 
@@ -434,7 +434,7 @@ public class Token {
 //                            mImage.setEffect(bb);
                             HelloController.playAudio("/winningA1.mp3");
 //                            if((token.getP()).equals("Player1")){
-                                text3.setText("Player1 WINS");
+                                text3.setText("Player 1 WINS");
                                 win_text.setText("Player 1");
                                 win_text.setAlignment(Pos.CENTER);
                                 lose_text.setText("Player 2");
@@ -480,10 +480,10 @@ public class Token {
 //                                lose_text.setAlignment(Pos.CENTER);
 //                            }
 //                            else{
-                                text3.setText("Player2 WINS");
-                                win_text.setText("Player2");
+                                text3.setText("Player 2 WINS");
+                                win_text.setText("Player 2");
                                 win_text.setAlignment(Pos.CENTER);
-                                lose_text.setText("Player1");
+                                lose_text.setText("Player 1");
                                 lose_text.setAlignment(Pos.CENTER);
 //                            }
                             wImage.setVisible(true);
