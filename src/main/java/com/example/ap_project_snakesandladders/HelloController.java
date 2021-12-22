@@ -190,12 +190,12 @@ public class HelloController implements Initializable {
     void roll_button(ActionEvent event) throws InterruptedException{
         downArrow.setVisible(false);
         //playTimer(-1);
-        Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 1)),
-                new KeyFrame(Duration.seconds(15), e-> {
-
-                }, new KeyValue(progress.progressProperty(), 0))
-        );
+//        Timeline timeline1 = new Timeline(
+//                new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 1)),
+//                new KeyFrame(Duration.seconds(15), e-> {
+//
+//                }, new KeyValue(progress.progressProperty(), 0))
+//        );
         //timeline.stop();
         Thread th1=new Thread(new Runnable() {
             @Override
@@ -261,10 +261,13 @@ public class HelloController implements Initializable {
                         try {
 
                             move();
+                            playTimer(-1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        timeline1.play();
+                        //timeline1.play();
+                    Timeline timeline9= new Timeline(new KeyFrame(Duration.millis(100*number),event1 -> {
+                        playTimer(1);
                         downArrow.setVisible(true);
                         if(bottomBarLeft.isVisible()==false){
                             System.out.println("In first");
@@ -278,6 +281,10 @@ public class HelloController implements Initializable {
                             bottomBarLeft.setVisible(false);
                             bottomBarRight.setVisible(true);
                         }
+                    }));
+
+                    timeline9.play();
+
                     }
                 });
             }
@@ -293,7 +300,7 @@ public class HelloController implements Initializable {
 
 
     void playTimer(int option){
-        downArrow.setVisible(true);
+        //downArrow.setVisible(true);
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(progress.progressProperty(), 1)),
                 new KeyFrame(Duration.seconds(15), e-> {
@@ -303,7 +310,7 @@ public class HelloController implements Initializable {
         if(option>0) {
             timeline.play();
         }else{
-            timeline.stop();
+            timeline.pause();
         }
         //downArrow.setVisible(false);
     }
@@ -514,6 +521,7 @@ public class HelloController implements Initializable {
         l9.setPath(path80_100);
         lads.add(l9);
         playTimer(1);
+        downArrow.setVisible(true);
 
     }
 }
