@@ -548,6 +548,7 @@ public class Token {
 
 //                    ParallelTransition p = new ParallelTransition(translate,translatey);
 //                    p.play();
+                    HelloController.playAudio("/bounce.mp3");
                     translate.play();
                     s.play();
 
@@ -567,6 +568,8 @@ public class Token {
                     translateydown.setDuration(Duration.millis(50));
                     translateydown.setByY(10);
                     s = new SequentialTransition(translateyup, translateydown);
+
+                    HelloController.playAudio("/bounce.mp3");
                     translate.play();
                     s.play();
 
@@ -577,6 +580,7 @@ public class Token {
                     translate.setNode(imgv);
                     translate.setDuration(Duration.millis(100));
                     translate.setByY(-49.5);
+                    HelloController.playAudio("/bounce.mp3");
                     translate.play();
                 }else{
                     translate.setNode(imgv);
